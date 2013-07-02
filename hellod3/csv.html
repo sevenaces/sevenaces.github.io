@@ -9,22 +9,27 @@
 </div>
 <script type="text/javascript">
 	
-	d3.csv("./data/links.csv", function(d){
-		d3.select("#charts")
-			.append('ul')
-			.attr("class", "nav nav-pills")
-			.selectAll('li')
-			.data(d)
-			.enter()
-			.append('li')
-			.attr('class', 'active')
-			.append('a')
-			.text(function(d) {return "#" + d.tag;})
-			.attr("href", function(d){return "http://www.designserif.com/tagged/" + d.tag;})
-			.attr("target", function(d){return d.target;});
-	});
-	
+	d3.select('#charts')
+	  .append('a')
+	  .attr('class','btn btn-large')
+	  .attr('id','tagload')
+	  .text('Load tags.csv')
+	  .on('click', function(){
 
-
-
+		d3.csv("./data/links.csv", function(d){
+			d3.select("#charts")
+				.append('ul')
+				.attr("class", "nav nav-pills")
+				.selectAll('li')
+				.data(d)
+				.enter()
+				.append('li')
+				.attr('class', 'active')
+				.append('a')
+				.text(function(d) {return "#" + d.tag;})
+				.attr("href", function(d){return "http://www.designserif.com/tagged/" + d.tag;})
+				.attr("target", function(d){return d.target;});
+		});
+		d3.select('#tagload').remove();
+	  });
 </script>        
