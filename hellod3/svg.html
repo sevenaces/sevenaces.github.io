@@ -1,0 +1,94 @@
+<div class="span12">
+	<div class="hero-unit">
+		<h1>Simple SVG</h1>
+		<p>In this example I have explored how to use D3's SVG Library.
+		</p>
+		<div id="charts">
+			<ul class="nav nav-tabs" id="svgtabs">
+			  <li class="active"><a href="#line">Lines</a></li>
+			  <li><a href="#circles">Circles</a></li>
+			  <li><a href="#rectangles">Rectangles</a></li>
+			  <li><a href="#ellipse">Ellipse</a></li>
+			</ul>
+			<div class="tab-content">
+			  <div class="tab-pane active" id="line"></div>
+			  <div class="tab-pane" id="circles"></div>
+			  <div class="tab-pane" id="rectangles"></div>
+			  <div class="tab-pane" id="ellipse"></div>
+			</div></div>
+		</div>
+</div>
+<script type="text/javascript">
+	
+	$('#svgtabs a').click(function (e) {
+  		e.preventDefault();
+  		$(this).tab('show');
+	});
+	
+	function getRandom(limit) {return Math.floor(Math.random()*limit);}
+	var blue =  '#0088cc';
+	
+	// D3 CODE - LINES
+	var linesvg = d3.select('#line').append('svg')
+   					.attr({
+   						'width': 450,
+   						'height': 150
+   					});
+	linesvg.append('line')
+		 .attr({
+			"stroke-width": 2,
+			'stroke': blue,
+		 	'x1': getRandom(450), 'x2': getRandom(450),
+		 	'y1': getRandom(150), 'y2': getRandom(150)
+			});
+
+
+
+	// D3 CODE - CIRCLES
+	var circlessvg = d3.select('#circles').append('svg')
+   					.attr({
+   						'width': 150,
+   						'height': 200
+   					})
+
+   	var circles = circlessvg.append('circle');
+
+	circles.attr({
+   					'cx': getRandom(150),
+   					'cy': getRandom(200),
+   					'r' : getRandom(20) + 10,
+   					'fill': blue
+				});
+	
+	// D3 CODE - RECTANGLE
+	var rectsvg = d3.select('#rectangles').append('svg')
+					.attr({
+   						'width': 250,
+   						'height': 250
+   						});
+	rectsvg.append('rect')					
+			.attr({
+				'x': getRandom(100),
+				'y': getRandom(100),
+				'width': getRandom(100),
+				'height': getRandom(100),
+				'fill' : blue
+			});
+
+
+	// D3 CODE - ELLIPSE
+	var ellipsesvg = d3.select('#ellipse').append('svg')
+						.attr({
+   						'width': 250,
+   						'height': 200
+   						});
+
+	var ellipse = ellipsesvg.append('ellipse')
+							.attr({
+								'cx': 125,
+								'cy': 100,
+								'rx': getRandom(100),
+								'ry': getRandom(100),
+								'fill': blue
+								});
+</script>        
