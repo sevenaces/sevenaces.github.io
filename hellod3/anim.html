@@ -1,0 +1,59 @@
+<div class="span12">
+	<div class="hero-unit">
+		<h1>Animations</h1>
+		<p>D3.js can also render animations on it's canvas. Here is an example animation position, radius and color of a circle.</p>
+		<div id="charts"></div>
+</div>
+<script type="text/javascript">
+	
+	var cx1 = 250,
+		cy1 = 100;
+
+	var xspeed = 10, yspeed = 1;
+
+	function getRandom(num){return Math.floor(Math.random()*num);}
+	function getRandomSign(){return Math.random()<0.5?1:-1;}
+	function getRandomColor() {return '#'+'0123456789abcdef'.split('').map(function(v,i,a){
+  return i>5 ? null : a[Math.floor(Math.random()*16)] }).join('');}
+	var svg = d3.select('#charts').append('svg')
+				.attr({
+					'width': 500,
+					'height': 200
+				});
+
+	var circle = svg.append('circle')
+					.attr({
+						'cx': cx1,
+						'cy': cy1,
+						 'r': 20
+					});
+	d3.select('#charts').append('a')
+		.attr('class','btn-large btn')
+		.text('Animate')
+		.on('click', animate);
+	
+	function animate()
+	{
+		xspeed += getRandom(50) * getRandomSign();
+		yspeed += getRandom(50) * getRandomSign();
+		
+		cx1 += xspeed;
+		cy1 += yspeed;
+
+		while(cx1 > 500) {cx1 -= getRandom(200);}
+		while(cx1 < 0) {cx1 += getRandom(80);}
+		
+		while(cy1 > 200) {cy1 -= getRandom(20);}
+		while(cy1 < 0) {cy1 += getRandom(20);}
+		
+		circle.transition()
+			.duration(1000)
+			.attr({
+				'cx': cx1,
+				'cy': cy1,
+				'r' : getRandom(30),
+				'fill': getRandomColor()
+			});
+	}
+
+</script>        
