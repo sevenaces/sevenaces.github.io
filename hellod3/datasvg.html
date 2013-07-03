@@ -1,0 +1,64 @@
+<div class="span12">
+	<div class="hero-unit">
+		<h1>Data based SVG</h1>
+		<p>This example creates an SVG based on the data provided. Here, it shows circles at appropriate data-points, and an interpolated line through them.</p>
+		<div id="charts"></div>
+</div>
+<script type="text/javascript">
+	var blue = '#005580'
+	
+	var data = [20, 30, 10, 50, 10];
+	var svg = d3.select('#charts').append('svg')
+				.attr({
+					'height': 100,
+					'width' : 400
+				});
+
+	function x(d,i) {return i*50;}
+	function y(d,i) {return d; }
+	
+
+	function previous(accessor){
+		return function(d,i){
+			return i > 0 ? accessor(data[i-1], i-1):0;
+		}
+	}
+
+	function update()
+	{
+		var circles = svg.selectAll('circle').data(data);
+		circles.enter()
+			.append('circle')
+			.attr({
+				'fill': blue,
+				'cx': x,
+				'cy': y,
+				'r': function(d,i) {return Math.sqrt(d);}
+			});
+		var lines = svg.selectAll('line').data(data);
+		lines.enter()
+			.append('line')
+			.attr({
+				'stroke-width': 1,
+				'stroke': blue,
+				'x1': previous(x), 'y1': previous(y),
+				'x2': x, 'y2': y,
+			});
+
+		var line = d3.svg.line()
+			.interpolate('basis')
+			.x(x)
+			.y(y);
+		svg.append('path')
+			.datum(data)
+			.attr({
+				'fill': 'none',
+				'stroke-width': 2,
+				'stroke': blue,
+				d: line
+			})
+	}
+
+
+	update();
+</script>        

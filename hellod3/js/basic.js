@@ -2,5 +2,4 @@
 
 $('.nav li a').click(function(){
 	$('#content').load('./' + this.id + '.html');
-	//alert(this.id);
 });

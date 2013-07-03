@@ -1,0 +1,59 @@
+<div class="span12">
+	<div class="hero-unit">
+		<h1>Scaling Axis</h1>
+		<p>Following the previous example, this scales the axis to have a better display.</p>
+		<div id="charts"></div>
+</div>
+<script type="text/javascript">
+	var blue = '#005580'
+	var data = [20, 30, 10, 50, 15, 20, 30, 10, 50, 15];
+	var width = 600, height = 400;
+	var margin = 50;
+	var svg = d3.select('#charts').append('svg')
+				.attr({
+					'height': height + margin*2,
+					'width' : width + margin*2
+				})
+				.append('g')
+				.attr('transform', 'translate('+margin+','+margin+')');
+
+	var scaleX = d3.scale.linear()
+					.range([0,width])
+					.domain([0, data.length -1]);
+
+	var scaleY = d3.scale.linear()
+					.range([height,0])
+					.domain(d3.extent(data));
+
+	function x(d,i) {return scaleX(i);}
+	function y(d,i) {return scaleY(d); }
+
+	function update()
+	{
+		var circles = svg.selectAll('circle').data(data);
+		circles.enter()
+			.append('circle')
+			.attr({
+				'fill': blue,
+				'cx': x,
+				'cy': y,
+				'r': function(d,i) {return d/2;}
+			});
+		
+		var line = d3.svg.line()
+			.interpolate('basis')
+			.x(x)
+			.y(y);
+		svg.append('path')
+			.datum(data)
+			.attr({
+				'fill': 'none',
+				'stroke-width': 2,
+				'stroke': blue,
+				d: line
+			})
+	}
+
+
+	update();
+</script>        

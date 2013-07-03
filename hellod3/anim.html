@@ -3,6 +3,7 @@
 		<h1>Animations</h1>
 		<p>D3.js can also render animations on it's canvas. Here is an example animation position, radius and color of a circle.</p>
 		<div id="charts"></div>
+		<!--<script src="http://gist-it.appspot.com/https://github.com/sevenaces/sevenaces.github.io/blob/master/hellod3/json.html"></script>-->
 </div>
 <script type="text/javascript">
 	
@@ -13,13 +14,15 @@
 
 	function getRandom(num){return Math.floor(Math.random()*num);}
 	function getRandomSign(){return Math.random()<0.5?1:-1;}
-	function getRandomColor() {return '#'+'0123456789abcdef'.split('').map(function(v,i,a){
-  return i>5 ? null : a[Math.floor(Math.random()*16)] }).join('');}
+	function getRandomColor() {return '#'+'0123456789abcdef'.split('').map(function(v,i,a){return i>5 ? null : a[Math.floor(Math.random()*16)] }).join('');}
+	var margin = {top: 20, right: 10, bottom: 20, left: 10};
 	var svg = d3.select('#charts').append('svg')
 				.attr({
-					'width': 500,
-					'height': 200
-				});
+					'width': 500 + margin.left + margin.right,
+					'height': 200 + margin.top + margin.bottom
+				})
+				.append("g")
+    			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");;
 
 	var circle = svg.append('circle')
 					.attr({
