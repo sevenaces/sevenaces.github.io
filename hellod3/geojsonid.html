@@ -1,0 +1,67 @@
+<style>
+	.district path {
+		stroke-width: 1px;
+		fill:#8ddaff;
+		stroke:#FFF;
+	}
+	.district path:hover {
+		stroke-width: 2px;
+		fill: #00A1F3;
+	}
+</style>
+<div class="span12">
+	<div class="hero-unit">
+		<h1>GeoJSON</h1>
+		<p>Use a <a href="./data/karnatakadistricts.json" target="_blank">geoJSON</a> file to show a map. This shows the districts in Karnataka, India. Hover over to see District Code and Name.</p>
+		<div id="charts"></div>
+</div>
+<script type="text/javascript">
+	var blue = '#005580'
+	var width = 300, height = 500;
+	var margin = 50;
+	
+	var tooltip = d3.select("body")
+		.append("div")
+		.style("position", "absolute")
+		.style("z-index", "10")
+		.style("border-radius", "10px")
+		.style("padding", "15px")
+		.style("color", "#fff")
+		.style('background', blue)
+		.style("visibility", "hidden")
+		.text("District Code / District Name");
+
+	var svg = d3.select('#charts').append('svg')
+				.attr({
+					'height': height + margin*2,
+					'width' : width + margin*2
+				})
+				.append('g')
+				.attr('transform', 'translate('+margin+','+margin+')');
+
+	var path = d3.geo.path().projection(d3.geo.mercator().translate([-5200, 1300]).scale(4000));
+
+  	var districts = svg.append("g")
+		  .attr("class", "district");
+
+	all_districts = districts.selectAll("path");
+
+  	d3.json("./data/karnatakadistricts.json", function(json) {
+	    all_districts
+	    .data(json.features)
+	    .enter().append("path")
+	    .attr('class', 'district')
+	    .attr("d", path) 
+  		.on("mouseover", function(d){
+
+  			tooltip.text(d.properties['dist_code'] + ' / ' + d.properties['DISTSHP']);
+  			return tooltip.style("visibility", "visible");
+  		})
+  		.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+  		.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+  	});
+  		
+
+
+
+</script>        

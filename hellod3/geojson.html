@@ -4,15 +4,11 @@
 		fill:#8ddaff;
 		stroke:#FFF;
 	}
-	.district path:hover {
-		stroke-width: 2px;
-		fill: #00A1F3;
-	}
 </style>
 <div class="span12">
 	<div class="hero-unit">
 		<h1>GeoJSON</h1>
-		<p>Use a <a href="./data/karnatakadistricts.json" target="_blank">geoJSON</a> file to show a map. This shows the districts in Karnataka, India. Hover over to see District Code and Name.</p>
+		<p>Use a <a href="./data/karnatakadistricts.json" target="_blank">geoJSON</a> file to show a map. This shows the districts in Karnataka, India.</p>
 		<div id="charts"></div>
 </div>
 <script type="text/javascript">
@@ -20,17 +16,6 @@
 	var width = 300, height = 500;
 	var margin = 50;
 	
-	var tooltip = d3.select("body")
-		.append("div")
-		.style("position", "absolute")
-		.style("z-index", "10")
-		.style("border-radius", "10px")
-		.style("padding", "15px")
-		.style("color", "#fff")
-		.style('background', blue)
-		.style("visibility", "hidden")
-		.text("District Code / District Name");
-
 	var svg = d3.select('#charts').append('svg')
 				.attr({
 					'height': height + margin*2,
@@ -42,7 +27,6 @@
 	var path = d3.geo.path().projection(d3.geo.mercator().translate([-5200, 1300]).scale(4000));
 
   	var districts = svg.append("g")
-		  //.attr("id", "districts")
 		  .attr("class", "district");
 
 	all_districts = districts.selectAll("path");
@@ -52,18 +36,6 @@
 	    .data(json.features)
 	    .enter().append("path")
 	    .attr('class', 'district')
-	    .attr("d", path)
-	    //.attr('id', funtion(d){return d.properties['dist_code'];})    
-  		.on("mouseover", function(d){
-
-  			tooltip.text(d.properties['dist_code'] + ' / ' + d.properties['DISTSHP']);
-  			return tooltip.style("visibility", "visible");
-  		})
-  		.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-  		.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+	    .attr("d", path);
   	});
-  		
-
-
-
 </script>        
