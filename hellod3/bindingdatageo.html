@@ -108,25 +108,24 @@
   				
   		}
   		graphsvg.selectAll('rect').remove();
-
-  		var graphd = d3.json('./data/math.json', function(json){
-  			graphsvg.selectAll('rect')
-  			.data(json[dist_code][0])
-  			.enter()
-  			.append('rect')
-  			.attr({
-  				'x': x,
-				'y': gheight + margin,
-				'width': 20,
-				'height': gheight,
-				'fill' : lightblue
-  			})
-  			.transition()
-  			.duration(700)
-  			.delay(200)
-  			.attr({
-				'y': y,
-  			});
-  		});  
+		var graphd = d3.json('./data/math.json', function(json){
+			graphsvg.selectAll('rect')
+			.data(json[dist_code][0])
+			.enter()
+			.append('rect')
+			.attr({
+				'x': x,
+			'y': gheight + margin,
+			'width': 20,
+			'height': gheight,
+			'fill' : lightblue
+			})
+			.transition()
+			.duration(700)
+			.delay(200)
+			.attr({
+			'y': y,
+			});
+	}); 
   	}
 </script>        
