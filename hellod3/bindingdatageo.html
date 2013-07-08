@@ -8,6 +8,9 @@
 		stroke-width: 2px;
 		fill: #00A1F3;
 	}
+	.district .selected	{
+		fill: #00A1F3;
+	}
 </style>
 <div class="span12">
 	<div class="hero-unit">
@@ -17,6 +20,8 @@
 			<div class="row">
 			<div class="span6" id="map">
 
+			</div>
+			<div class="subjects btn-group">
 			</div>
 			<div class="span6" id="graph">
 			</div>
@@ -30,7 +35,9 @@
 	var width = 300, height = 500;
 	var gwidth = 400, gheight = 500;
 	var margin = 50;
-	
+	var tintime = 70,
+		touttime = 200;
+
 	var scaleX = d3.scale.linear()
 					.range([0,gwidth])
 					.domain([0,8]);
@@ -39,6 +46,30 @@
 					.range([gheight,0])
 					.domain([0,100]);
 
+	// var districtsjson;
+	// d3.json('./data/karnatakadistricts.json', function(json) {
+	// 	districtsjson = json;
+	// 	console.log(districtsjson);
+	// });
+
+	var math, scores;
+	d3.json('./data/math.json', function(json){
+		scores = math = json;
+	});
+
+	var kannada;
+	d3.json('./data/kannada.json', function(json){
+		kannada = json;
+	});
+
+	var english;
+	d3.json('./data/english.json', function(json){
+		english = json;
+	});
+
+	d3.select('.subjects').append('button').text('Maths').attr('class','btn active').attr('id', 'math').on('click', function(){toggleSubject('math');});
+	d3.select('.subjects').append('button').text('Kannada').attr('class','btn').attr('id', 'kannada').on('click', function(){toggleSubject('kannada');});
+	d3.select('.subjects').append('button').text('English').attr('class','btn').attr('id', 'english').on('click', function(){toggleSubject('english');});
 
 	function x(d,i){return scaleX(i);}
 	function y(d,i){return scaleY(d);}
@@ -69,7 +100,16 @@
 
 	all_districts = districts.selectAll("path");
 
-  	d3.json("./data/karnatakadistricts.json", function(json) {
+	var graphsvg = d3.select('#graph').append('svg')
+					.attr({
+						'height': gheight + margin,
+						'width' : gwidth + margin
+					})
+					.append('g')
+
+  	function initialize()
+  	{
+  		d3.json("./data/karnatakadistricts.json", function(json) {
 	    all_districts
 	    .data(json.features)
 	    .enter().append("path")
@@ -83,34 +123,32 @@
   		})
   		.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
   		.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
-  		.on('click', function(d){ process(d); });
-  	});
-  	
-  	var graphsvg = d3.select('#graph').append('svg')
-					.attr({
-						'height': gheight + margin,
-						'width' : gwidth + margin
-					})
-					.append('g')
+  		.on('click', function(d){ 
+  			makeGraph(d, scores);
+  			d3.selectAll('.district').attr('class', 'district');
+  			d3.select(this).attr('class', 'district selected');
+	  		});
+  		});
+		graphsvg.selectAll('rect').remove();
+  	}
+  	initialize();
 	
-  	function process(district)
+  	function makeGraph(district, scores)
   	{
   		var dist_code = (district.properties['dist_code']);	
-  		
-  		if(!graphsvg.selectAll('rect').empty())
-  		{
-  			graphsvg.selectAll('rect')
-  				.transition()
-  				.duration(300)
-  				.attr({
-  					'y': gheight + margin
-  				});
-  				
-  		}
+  		// if(!graphsvg.selectAll('rect').empty())
+  		// {
+  		// 		graphsvg.selectAll('rect')
+  		// 		.transition()
+  		// 		.duration(touttime)
+  		// 		.attr({
+  		// 			'y': gheight + margin
+  		// 		});  	
+  		// }
   		graphsvg.selectAll('rect').remove();
-		var graphd = d3.json('./data/math.json', function(json){
-			graphsvg.selectAll('rect')
-			.data(json[dist_code][0])
+		var graphd = 
+		graphsvg.selectAll('rect')
+			.data(scores[dist_code][0])
 			.enter()
 			.append('rect')
 			.attr({
@@ -121,11 +159,21 @@
 			'fill' : lightblue
 			})
 			.transition()
-			.duration(700)
+			.duration(tintime)
 			.delay(200)
 			.attr({
 			'y': y,
 			});
-	}); 
   	}
+
+  	
+
+	function toggleSubject(subject)	{
+		d3.selectAll('.subjects button')
+			.attr('class', 'btn');
+		d3.select('#' + subject)
+			.attr('class', 'btn active');
+		scores = window[subject];
+		initialize();
+	}
 </script>        
