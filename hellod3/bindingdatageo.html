@@ -46,12 +46,6 @@
 					.range([gheight,0])
 					.domain([0,100]);
 
-	// var districtsjson;
-	// d3.json('./data/karnatakadistricts.json', function(json) {
-	// 	districtsjson = json;
-	// 	console.log(districtsjson);
-	// });
-
 	var math, scores;
 	d3.json('./data/math.json', function(json){
 		scores = math = json;
@@ -65,6 +59,12 @@
 	var english;
 	d3.json('./data/english.json', function(json){
 		english = json;
+	});
+
+	var districtsjson;
+	d3.json('./data/karnatakadistricts.json', function(json) {
+		districtsjson = json;
+		initialize();
 	});
 
 	d3.select('.subjects').append('button').text('Maths').attr('class','btn active').attr('id', 'math').on('click', function(){toggleSubject('math');});
@@ -109,9 +109,9 @@
 
   	function initialize()
   	{
-  		d3.json("./data/karnatakadistricts.json", function(json) {
+  		// d3.json("./data/karnatakadistricts.json", function(json) {
 	    all_districts
-	    .data(json.features)
+	    .data(districtsjson.features)
 	    .enter().append("path")
 	    .attr('class', 'district')
 	    .attr('id', function(d){return d.properties['dist_code'];})
@@ -128,10 +128,9 @@
   			d3.selectAll('.district').attr('class', 'district');
   			d3.select(this).attr('class', 'district selected');
 	  		});
-  		});
+  		// });
 		graphsvg.selectAll('rect').remove();
   	}
-  	initialize();
 	
   	function makeGraph(district, scores)
   	{
