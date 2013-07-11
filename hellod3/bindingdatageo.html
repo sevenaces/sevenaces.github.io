@@ -11,11 +11,17 @@
 	.district .selected	{
 		fill: #00A1F3;
 	}
+	.graphLabel	{
+		font-size: 45pt;
+		fill: #999;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-weight: 100;
+	}
 </style>
 <div class="span12">
 	<div class="hero-unit">
-		<h1>GeoJSON</h1>
-		<p>Use a <a href="./data/karnatakadistricts.json" target="_blank">geoJSON</a> file to show a map. This shows the districts in Karnataka, India. Hover over to see District Code and Name.</p>
+		<h1>Binding Data</h1>
+		<p>Binds scores of 2012 board exams to districts, over the years.</p>
 		<div id="charts">
 			<div class="row">
 			<div class="span6" id="map">
@@ -67,9 +73,9 @@
 		initialize();
 	});
 
-	d3.select('.subjects').append('button').text('Maths').attr('class','btn active').attr('id', 'math').on('click', function(){toggleSubject('math');});
-	d3.select('.subjects').append('button').text('Kannada').attr('class','btn').attr('id', 'kannada').on('click', function(){toggleSubject('kannada');});
-	d3.select('.subjects').append('button').text('English').attr('class','btn').attr('id', 'english').on('click', function(){toggleSubject('english');});
+	d3.select('.subjects').append('button').text('Maths').attr('class','btn btn-large active').attr('id', 'math').on('click', function(){toggleSubject('math');});
+	d3.select('.subjects').append('button').text('Kannada').attr('class','btn btn-large').attr('id', 'kannada').on('click', function(){toggleSubject('kannada');});
+	d3.select('.subjects').append('button').text('English').attr('class','btn btn-large').attr('id', 'english').on('click', function(){toggleSubject('english');});
 
 	function x(d,i){return scaleX(i);}
 	function y(d,i){return scaleY(d);}
@@ -145,7 +151,6 @@
   		// 		});  	
   		// }
   		graphsvg.selectAll('rect').remove();
-		var graphd = 
 		graphsvg.selectAll('rect')
 			.data(scores[dist_code][0])
 			.enter()
@@ -157,6 +162,12 @@
 			'height': gheight,
 			'fill' : lightblue
 			})
+			.on('mouseover', function(d){
+				tooltip.text(d + "%");
+				return tooltip.style('visibility', 'visible');
+			})
+			.on('mousemove', function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+			.on('mouseout', function(){return tooltip.style('visibility', 'hidden');})
 			.transition()
 			.duration(tintime)
 			.delay(200)
@@ -169,9 +180,9 @@
 
 	function toggleSubject(subject)	{
 		d3.selectAll('.subjects button')
-			.attr('class', 'btn');
+			.attr('class', 'btn btn-large');
 		d3.select('#' + subject)
-			.attr('class', 'btn active');
+			.attr('class', 'btn btn-large active');
 		scores = window[subject];
 		initialize();
 	}
