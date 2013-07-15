@@ -17,6 +17,16 @@
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		font-weight: 100;
 	}
+	.axis path,	.axis line {
+	    fill: none;
+	    stroke: black;
+	    shape-rendering: crispEdges;
+	}
+
+	.axis text {
+	    font-size: 11px;
+	    margin-bottom:3px;
+	}
 </style>
 <div class="span12">
 	<div class="hero-unit">
@@ -43,6 +53,7 @@
 	var margin = 50;
 	var tintime = 70,
 		touttime = 200;
+	var selectedDistrict;
 
 	var scaleX = d3.scale.linear()
 					.range([0,gwidth])
@@ -70,7 +81,7 @@
 	var districtsjson;
 	d3.json('./data/karnatakadistricts.json', function(json) {
 		districtsjson = json;
-		initialize();
+		initialize(selectedDistrict);
 	});
 
 	d3.select('.subjects').append('button').text('Maths').attr('class','btn btn-large active').attr('id', 'math').on('click', function(){toggleSubject('math');});
@@ -98,6 +109,14 @@
 				})
 				.append('g')
 				.attr('transform', 'translate('+margin+','+margin+')');
+	
+	var graphsvg = d3.select('#graph').append('svg')
+					.attr({
+						'height': gheight + margin,
+						'width' : gwidth + margin
+					})
+					.append('g')
+					.attr('transform', 'translate('+margin+','+margin+')');
 
 	var path = d3.geo.path().projection(d3.geo.mercator().translate([-5200, 1300]).scale(4000));
 
@@ -106,41 +125,57 @@
 
 	all_districts = districts.selectAll("path");
 
-	var graphsvg = d3.select('#graph').append('svg')
-					.attr({
-						'height': gheight + margin,
-						'width' : gwidth + margin
-					})
-					.append('g')
+	
+/*
+	var xAxis = d3.svg.axis()
+	    .scale(scaleX)
+	    .orient('bottom');
 
-  	function initialize()
-  	{
-  		// d3.json("./data/karnatakadistricts.json", function(json) {
+	graphsvg.append('g')
+	    .attr('class', 'axis')
+	    .attr('transform', 'translate(0,' + (gheight - 10) + ')')
+	    .call(xAxis)*/;
+	  
+	var yAxis = d3.svg.axis()
+	    .scale(scaleY)
+	    .orient('left')
+	    .ticks(6);
+
+	graphsvg.append('g')
+	    .attr('class', 'axis')
+	    .attr('transform', 'translate(-20,-5)')
+	    .call(yAxis);
+
+  	function initialize(currentDistrict)
+  	{	
 	    all_districts
 	    .data(districtsjson.features)
 	    .enter().append("path")
-	    .attr('class', 'district')
+	    .attr('class', function(d){ if(d.properties['dist_code'] == currentDistrict) {return 'district selected'; } else return 'district';})
 	    .attr('id', function(d){return d.properties['dist_code'];})
 	    .attr("d", path) 
   		.on("mouseover", function(d){
 
-  			tooltip.text(d.properties['dist_code'] + ' / ' + d.properties['DISTSHP']);
+  			tooltip.text(d.properties['DISTSHP']);
   			return tooltip.style("visibility", "visible");
   		})
   		.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
   		.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
   		.on('click', function(d){ 
-  			makeGraph(d, scores);
+  			makeGraph(d.properties['dist_code'], scores);
   			d3.selectAll('.district').attr('class', 'district');
   			d3.select(this).attr('class', 'district selected');
+  			selectedDistrict = d.properties['dist_code'];
 	  		});
   		// });
-		graphsvg.selectAll('rect').remove();
+		
+		if(currentDistrict)
+			makeGraph(currentDistrict, scores);
   	}
 	
-  	function makeGraph(district, scores)
+  	function makeGraph(dist_code, scores)
   	{
-  		var dist_code = (district.properties['dist_code']);	
+  		// var dist_code = (district.properties['dist_code']);	
   		// if(!graphsvg.selectAll('rect').empty())
   		// {
   		// 		graphsvg.selectAll('rect')
@@ -184,6 +219,6 @@
 		d3.select('#' + subject)
 			.attr('class', 'btn btn-large active');
 		scores = window[subject];
-		initialize();
+		initialize(selectedDistrict);
 	}
 </script>        
