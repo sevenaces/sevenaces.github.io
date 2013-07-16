@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>American Heartbeat : 2011</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      html, body  {
+        background: #000;
+        color: #FFF;
+      }
+      #heartbeat  {
+        background: black;
+        color: #F00;
+      }
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div id="heartbeat"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.min.js"></script><script src="./js/d3.v3.min.js"></script>
+    <script>
+
+    /*
+      0..x..-x..0..-y..z.z`..b..-b..0
+      0 = netrual
+      x = start
+      y = start`
+      z = abs value compared against value for healthy
+      z`= averagenumber of hospitals/capita
+      b = average country
+    */
+
+    var height = 900, width = 800;
+    var margin = 50;
+    var healthy = 100;
+ 
+    var heartbeatData = [0, 4, -4, 0, -4, 20, -20, 40, 0];
+    var refHeartbeatData = [0, 4, -4, 0, -4, 100, -100, 40, 0];
+    var zeros = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+    var temp = zeros;
+    temp = temp.concat(heartbeatData, zeros);
+    heartbeatData = temp;
+
+    temp = zeros;
+    temp = temp.concat(refHeartbeatData, zeros);
+    refHeartbeatData = temp;
+
+    var heartbeat = d3.select('#heartbeat').append('svg')
+                      .attr({
+                        'width': width,
+                        'height' : height
+                      })
+                      .append('g')
+                      .attr('transform', 'translate(-'+margin*3+','+margin*10+')');
+ 
+    function x(d,i) {return i*20;}
+    function y(d,i) {return -d*6; }
+
+
+    function previous(accessor){
+      return function(d,i){
+        return i > 0 ? accessor(heartbeatData[i-1], i-1):0;
+      }
+    }
+
+  var line = d3.svg.line()
+    .interpolate('bundle')
+    .x(x)
+    .y(y);
+
+  var ref = heartbeat.append('path')
+    .datum(refHeartbeatData)
+    .attr({
+      'fill': 'none',
+      'stroke-width':1,
+      'stroke': '#8B0000',
+      d: line
+    });
+
+  var path = heartbeat.append('path')
+    .datum(heartbeatData)
+    .attr({
+      'fill': 'none',
+      'stroke-width':2,
+      'stroke': 'red',
+      d: line
+    });
+
+    var totalLength = path.node().getTotalLength();
+    
+    path.attr({
+      'stroke-dasharray': 250 + " " + 900,
+      'stroke-dashoffset': totalLength*12
+    })
+    .transition()
+    .duration(20000)
+    .ease('linear')
+    .attr('stroke-dashoffset', -totalLength)
+    .transition()
+   
+    </script>
+  </body>
+</html>
