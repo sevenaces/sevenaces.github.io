@@ -28,7 +28,6 @@
 	    margin-bottom:3px;
 	}
 </style>
-<div class="row">
 <div class="span12">
 	<div class="hero-unit">
 		<h1>Binding Data</h1>
@@ -44,7 +43,6 @@
 			</div>
 			</div>
 		</div>
-	</div>
 </div>
 </div>
 <script type="text/javascript">
@@ -174,16 +172,27 @@
 		if(currentDistrict)
 			makeGraph(currentDistrict, scores);
   	}
-/*
-  	function makeGraphi()
+	
+  	function makeGraph(dist_code, scores)
   	{
-  		graphsvg.selectAll('rect')
+  		// var dist_code = (district.properties['dist_code']);	
+  		// if(!graphsvg.selectAll('rect').empty())
+  		// {
+  		// 		graphsvg.selectAll('rect')
+  		// 		.transition()
+  		// 		.duration(touttime)
+  		// 		.attr({
+  		// 			'y': gheight + margin
+  		// 		});  	
+  		// }
+  		graphsvg.selectAll('rect').remove();
+		graphsvg.selectAll('rect')
 			.data(scores[dist_code][0])
 			.enter()
 			.append('rect')
 			.attr({
 				'x': x,
-				'y': geight + margin,
+
 				'width': 20,
 				'height': gheight,
 				'fill' : lightblue,
@@ -195,29 +204,12 @@
 			})
 			.on('mousemove', function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
 			.on('mouseout', function(){return tooltip.style('visibility', 'hidden');})
-  	}*/
-	
-  	function makeGraph(dist_code, scores)
-  	{
-  		graphsvg.selectAll('rect').remove();
-		graphsvg.selectAll('rect')
-			.data(scores[dist_code][0])
-			.enter()
-			.append('rect')
+			.transition()
+			.duration(tintime)
+			.delay(200)
 			.attr({
-				'x': x,
-				'y': y,
-				'width': 20,
-				'height': gheight,
-				'fill' : lightblue,
-				'id' : function(d, i) {return 'graphRect' + i;}
-			})
-			.on('mouseover', function(d){
-				tooltip.text(d + "%");
-				return tooltip.style('visibility', 'visible');
-			})
-			.on('mousemove', function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-			.on('mouseout', function(){return tooltip.style('visibility', 'hidden');});
+			'y': y,
+			});
   	}
 
   	

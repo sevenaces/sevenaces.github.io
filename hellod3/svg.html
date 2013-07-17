@@ -34,14 +34,22 @@
    						'width': 450,
    						'height': 150
    					});
+for(i = 0; i < 30000; i++)  
+{
+	console.log(i);
+	makeLine();
+}	
+	function makeLine()
+	{
 	linesvg.append('line')
 		 .attr({
 			"stroke-width": 2,
 			'stroke': blue,
 		 	'x1': getRandom(450), 'x2': getRandom(450),
 		 	'y1': getRandom(150), 'y2': getRandom(150)
-			});
-
+			})
+		 .on('mouseover', function(){console.log('yay')});
+		}
 
 
 	// D3 CODE - CIRCLES

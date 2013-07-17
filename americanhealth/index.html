@@ -55,88 +55,10 @@
 
 
     <script src="./js/jquery.js"></script>
-    <script src="./js/bootstrap.min.js"></script><script src="./js/d3.v3.min.js"></script>
-    <script>
-
-    /*
-      0..x..-x..0..-y..z.z`..b..-b..0
-      0 = netrual
-      x = start
-      y = start`
-      z = abs value compared against value for healthy
-      z`= averagenumber of hospitals/capita
-      b = average country
-    */
-
-    var height = 900, width = 800;
-    var margin = 50;
-    var healthy = 100;
- 
-    var heartbeatData = [0, 4, -4, 0, -4, 20, -20, 40, 0];
-    var refHeartbeatData = [0, 4, -4, 0, -4, 100, -100, 40, 0];
-    var zeros = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-
-    var temp = zeros;
-    temp = temp.concat(heartbeatData, zeros);
-    heartbeatData = temp;
-
-    temp = zeros;
-    temp = temp.concat(refHeartbeatData, zeros);
-    refHeartbeatData = temp;
-
-    var heartbeat = d3.select('#heartbeat').append('svg')
-                      .attr({
-                        'width': width,
-                        'height' : height
-                      })
-                      .append('g')
-                      .attr('transform', 'translate(-'+margin*3+','+margin*10+')');
- 
-    function x(d,i) {return i*20;}
-    function y(d,i) {return -d*6; }
-
-
-    function previous(accessor){
-      return function(d,i){
-        return i > 0 ? accessor(heartbeatData[i-1], i-1):0;
-      }
-    }
-
-  var line = d3.svg.line()
-    .interpolate('bundle')
-    .x(x)
-    .y(y);
-
-  var ref = heartbeat.append('path')
-    .datum(refHeartbeatData)
-    .attr({
-      'fill': 'none',
-      'stroke-width':1,
-      'stroke': '#8B0000',
-      d: line
-    });
-
-  var path = heartbeat.append('path')
-    .datum(heartbeatData)
-    .attr({
-      'fill': 'none',
-      'stroke-width':2,
-      'stroke': 'red',
-      d: line
-    });
-
-    var totalLength = path.node().getTotalLength();
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/d3.v3.min.js"></script>
+    <script src="./js/prevelance.js"></script>
+    <script src="./js/heartbeat.js"></script>
     
-    path.attr({
-      'stroke-dasharray': 250 + " " + 900,
-      'stroke-dashoffset': totalLength*12
-    })
-    .transition()
-    .duration(20000)
-    .ease('linear')
-    .attr('stroke-dashoffset', -totalLength)
-    .transition()
-   
-    </script>
   </body>
 </html>
