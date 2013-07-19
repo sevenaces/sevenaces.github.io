@@ -1,22 +1,13 @@
-var height = 900, width = 800;
+var height = 400, width = 600;
 var margin = 50;
 
 var darkRed = '#8B0000';
 var scaleYAdjust = 1.2;
 var scaleXAdjust = 20;
 
-var heartbeatData = [0, .04, -0.04, 0, -0.04, 0.20, -0.20, 0.40, 0];
+// var heartbeatData = [0, .04, -0.04, 0, -0.04, 0.20, -0.20, 0.40, 0];
 // var heartbeatData1 = [0, .04, -0.04, 0, -0.04, 0.20, -0.20, 0.40, 0];
 
-var heartbeatsvg = d3.select('#heartbeat').append('svg')
-                  .attr({
-                    'width': width,
-                    'height' : height
-                  })
-                  .append('g');
-
-// createHeartbeat(heartbeatsvg, 300, 600, 100, 200, heartbeatData);
-// createHeartbeat(heartbeatsvg, 300, 300, 300, 500, heartbeatData1);
 
 function x(d,i) {return i*scaleXAdjust;}
 function y(d,i) {return -d; }
@@ -101,10 +92,7 @@ function animateHeartbeat(path)
     });
 }
 
-var xxx = getData('ME', 12);
-console.log(xxx);
-createHeartbeat(heartbeatsvg, 300, 600, 100, 200, xxx);
-function getData(stateCode, drg)
+function getData(stateCode, drgs)
 {
     /*
       0..x..-x..0..-y..z.z`..b..-b..0
@@ -117,13 +105,31 @@ function getData(stateCode, drg)
 
       Example: var heartbeatData = [0, .04, -0.04, 0, -0.04, 0.20, -0.20, 0.40, 0];
     */
-
     var prevelanceIndex = 0, hospitalIndex = 0, averagePrevelance = 0;
-
-    prevelanceIndex = 1 - prevelanceIndexArray[countries.indexOf(stateCode)][drg]/prevelanceIndexMax[drg];
-    averagePrevelance = averagePrevelanceArray[drg];
-    hospitalIndex = -hospitalIndexArray[countries.indexOf(stateCode)];
     
+    hospitalIndex = -hospitalIndexArray[countries.indexOf(stateCode)];
+
+    
+      
+    if(drgs[0] != -1)
+    {
+      for(var i = 0; i < drgs.length; i++)
+      {
+        prevelanceIndex += 1 - prevelanceIndexArray[countries.indexOf(stateCode)][drgs[i]]/prevelanceIndexMax[drgs[i]];
+        averagePrevelance += averagePrevelanceArray[drgs[i]];
+      }
+      prevelanceIndex /= drgs.length;
+      averagePrevelance /= drgs.length;
+      
+      
+    }
+    else
+    {
+
+      prevelanceIndex = 1 - allDiseasePrevelance[countries.indexOf(stateCode)];
+      averagePrevelance = 0.3651326228; 
+    }
+
     var data = [0, 0.04, -0.04, 0, -0.04,    prevelanceIndex,    hospitalIndex,   averagePrevelance, 0];
     return data;
 }

@@ -1,0 +1,66 @@
+html, body  {
+  background: #FFF;
+  color: #222;
+}
+#heartbeat  {
+  background: black;
+  color: #F00;
+}
+
+.district {
+  stroke-width: 1;
+  stroke: #9f1111;
+}
+
+.district:hover {
+  fill: #9f1111;
+}
+
+.selected {
+  fill: #9f1111;
+}
+
+.headerRow  {
+  padding-top: 30px;
+}
+
+.map, .span12 {text-align: center;}
+h1, h2  {
+  font-weight: normal;
+  font-family: Abel, verdana, sans-serif;
+  text-align: center;
+  font-size: 60pt;
+  color: #000;
+}
+
+h2  {
+  padding-top: 10px;
+  font-size: 30pt;
+  color:#999;
+  border-top:1px solid #999;
+}
+
+.content  {
+  padding-top: 30px;
+}
+
+
+.tooltip  {
+  position: absolute;
+  z-index: 10;
+  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #9f1111;
+  color: #000;
+  background: #CCC;
+  visibility: hidden;
+}
+
+@media (max-width: 980px) {
+  /* Enable use of floated navbar text */
+  .navbar-text.pull-right {
+    float: none;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
