@@ -1,5 +1,5 @@
 var levelsOfColor = 10;
-var color = d3.scale.linear().domain([1,levelsOfColor]).range(['pink', 'red']);
+var color = d3.scale.linear().domain([1,levelsOfColor]).range(['white', 'red']);
 var grey = '#666';
 
 var tooltip = d3.select("body")
@@ -33,19 +33,19 @@ function createMap(selectedDrgs)
 	    .attr('class', 'district')
 	    .attr('fill', function(d){
 	    	var ci = countriesNames.indexOf((d.properties["name"]));
-	    	var colorIndex = 0;
+	    	var colorIndex;
 	    	if(selectedDrgs[0] != -1)
 		    {
 		    	for(var i = 0; i < selectedDrgs.length; i++)
 		    	{
-			    	if(ci > 0)
+			    	if(ci >= 0)
 			    		colorIndex += parseInt(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[i]]/prevelanceIndexMax[selectedDrgs[i]]));
 		    	}
 		    	colorIndex /= selectedDrgs.length;
 		    }
 		    else
 		    	colorIndex = parseInt((1 - allDiseasePrevelance[ci])*10);
-	    	
+	    	if(ci == 0) console.log(colorIndex);
 	    	return color(9-colorIndex);
 	    })
 	    .attr('id', function(d){
