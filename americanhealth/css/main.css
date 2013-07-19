@@ -13,11 +13,12 @@ html, body  {
 }
 
 .district:hover {
-  fill: #9f1111;
+  /*fill: #591100;*/
+  stroke-width: 3;
 }
 
 .selected {
-  fill: #9f1111;
+  stroke-width: 5;
 }
 
 .headerRow  {
