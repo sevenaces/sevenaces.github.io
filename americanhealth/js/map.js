@@ -1,6 +1,7 @@
 var levelsOfColor = 10;
 var color = d3.scale.linear().domain([1,levelsOfColor]).range(['pink', 'red']);
 var grey = '#666';
+
 var tooltip = d3.select("body")
 	.append("div")
 	.style("position", "absolute")
@@ -45,7 +46,7 @@ function createMap(selectedDrgs)
 		    else
 		    	colorIndex = parseInt((1 - allDiseasePrevelance[ci])*10);
 	    	
-	    	return color(colorIndex);
+	    	return color(9-colorIndex);
 	    })
 	    .attr('id', function(d){
 	    	// console.log(d.properties["name"]);
@@ -67,32 +68,33 @@ function createMap(selectedDrgs)
 					shrinkMap(false);
 					d3.selectAll('.district').attr('class', 'district');
 					flag = false;
-				}		
+				}
   			}
   			if(flag)
   			{
-  				shrinkMap(true);
-	  			d3.selectAll('.district').attr('class', 'district');
+  				d3.selectAll('.district').attr('class', 'district');
 	  			d3.select(this).attr('class', 'district selected');
+	  			shrinkMap(true);
+				createHeartbeat(svg, 300, 600, 1000, 200, getData(d.properties["name"],[-1]));
   			}  			
   		});
   	});
 }
 
- function shrinkMap(shrink)
-      {
-        if(shrink)
-        {
-          svg
-            .transition()
-            .duration(1000)
-            .attr('transform', 'scale(.6) translate(-100,0)');
-        }
-        else
-        {
-           svg
-            .transition()
-            .duration(400)
-            .attr('transform', 'scale(1) translate(-50,0)');
-        }
-      }
+function shrinkMap(shrink)
+{
+	if(shrink)
+	{
+	  svg
+	    .transition()
+	    .duration(1000)
+	    .attr('transform', 'scale(.6) translate(-100,0)');
+	}
+	else
+	{
+	   svg
+	    .transition()
+	    .duration(400)
+	    .attr('transform', 'scale(1)');
+	}
+}

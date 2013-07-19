@@ -57,19 +57,8 @@
     <script src="./js/d3.v3.min.js"></script>
     <script src="./js/data.js"></script>
     <script src="./js/map.js"></script>       
-    
-    <!-- 
     <script src="./js/heartbeat.js"></script>
-    -->
     <script>
-/*      var heartbeatsvg = d3.select('#heartbeat').append('svg')
-                          .attr({
-                            'width': width,
-                            'height' : height
-                          })
-                          .append('g');
-*/
-      // createHeartbeat(heartbeatsvg, 300, 600, 0, 200, getData('AZ',[-1]));
       var width = 1000, height = 500;
       var margin = 50;
       var svg = d3.select('#map').append('svg')
@@ -78,9 +67,9 @@
           'width' : width
         })
         .append('g')
-        .attr('transform', 'translate(-50, 0)');
+        .attr('transform', 'translate(0, 0)');
 
-      createMap([-1]);
+      createMap([0]);
     </script>
   </body>
 </html>

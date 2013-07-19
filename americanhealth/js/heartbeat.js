@@ -1,6 +1,3 @@
-var height = 400, width = 600;
-var margin = 50;
-
 var darkRed = '#8B0000';
 var scaleYAdjust = 1.2;
 var scaleXAdjust = 20;
@@ -20,6 +17,7 @@ function previous(accessor){
 
 function createHeartbeat(svg, height, width, mx, my, heartbeatData)
 {
+  console.log(heartbeatData);
   // min width = height * 1.5;
   var path, ref, line;
   var zeros = [];
@@ -54,10 +52,13 @@ function createHeartbeat(svg, height, width, mx, my, heartbeatData)
     .x(x)
     .y(y);
 
+  d3.selectAll('.hb').remove();
+
   ref = svg
     .append('path')
     .datum(refHeartbeatData)
     .attr({
+      'class': 'hb',
       'fill': 'none',
       'stroke-width':1,
       'stroke': darkRed,
@@ -69,6 +70,7 @@ function createHeartbeat(svg, height, width, mx, my, heartbeatData)
     .append('path')
     .datum(heartbeatData)
     .attr({
+      'class': 'hb',
       'fill': 'none',
       'stroke-width':2,
       'stroke': 'red',
@@ -92,7 +94,7 @@ function animateHeartbeat(path)
     });
 }
 
-function getData(stateCode, drgs)
+function getData(state, drgs)
 {
     /*
       0..x..-x..0..-y..z.z`..b..-b..0
@@ -107,7 +109,7 @@ function getData(stateCode, drgs)
     */
     var prevelanceIndex = 0, hospitalIndex = 0, averagePrevelance = 0;
     
-    hospitalIndex = -hospitalIndexArray[countries.indexOf(stateCode)];
+    hospitalIndex = -hospitalIndexArray[countriesNames.indexOf(state)];
 
     
       
@@ -115,7 +117,7 @@ function getData(stateCode, drgs)
     {
       for(var i = 0; i < drgs.length; i++)
       {
-        prevelanceIndex += 1 - prevelanceIndexArray[countries.indexOf(stateCode)][drgs[i]]/prevelanceIndexMax[drgs[i]];
+        prevelanceIndex += 1 - prevelanceIndexArray[countriesNames.indexOf(state)][drgs[i]]/prevelanceIndexMax[drgs[i]];
         averagePrevelance += averagePrevelanceArray[drgs[i]];
       }
       prevelanceIndex /= drgs.length;
@@ -126,7 +128,7 @@ function getData(stateCode, drgs)
     else
     {
 
-      prevelanceIndex = 1 - allDiseasePrevelance[countries.indexOf(stateCode)];
+      prevelanceIndex = 1 - allDiseasePrevelance[countriesNames.indexOf(state)];
       averagePrevelance = 0.3651326228; 
     }
 
