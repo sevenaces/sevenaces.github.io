@@ -86,7 +86,7 @@ function animateHeartbeat(path)
 {    
   path.attr('stroke-dashoffset', 0);    
   path.transition()
-    .duration(3000)
+    .duration(2000)
     .ease('linear')
     .attr('stroke-dashoffset', -1200)
     .each("end", function(d,i){
@@ -117,7 +117,7 @@ function getData(state, drgs)
     {
       for(var i = 0; i < drgs.length; i++)
       {
-        prevelanceIndex += 1 - prevelanceIndexArray[countriesNames.indexOf(state)][drgs[i]]/prevelanceIndexMax[drgs[i]];
+        prevelanceIndex += 1 - prevelanceIndexArray[countriesNames.indexOf(state)][drgs[i]]/(prevelanceIndexMax[drgs[i]]+01);
         averagePrevelance += averagePrevelanceArray[drgs[i]];
       }
       prevelanceIndex /= drgs.length;

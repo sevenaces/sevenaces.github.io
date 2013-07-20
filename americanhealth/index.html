@@ -25,7 +25,7 @@
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="../assets/ico/favicon.png">
 
-    <script src="http://use.edgefonts.net/abel.js"></script>
+    <!--<script src="http://use.edgefonts.net/abel.js"></script>-->
   </head>
 
   <body>
@@ -51,6 +51,9 @@
           <div id="heartbeat"></div>
         </div>
       </div>
+      <div class="row filters">
+        <div class="span12 filter">blah</div>
+      </div>
     </div>
     <script src="./js/jquery.js"></script>
     <script src="./js/bootstrap.min.js"></script>
@@ -58,6 +61,7 @@
     <script src="./js/data.js"></script>
     <script src="./js/map.js"></script>       
     <script src="./js/heartbeat.js"></script>
+    <script src="./js/filters.js"></script>
     <script>
       var width = 1000, height = 500;
       var margin = 50;
@@ -69,7 +73,7 @@
         .append('g')
         .attr('transform', 'translate(0, 0)');
 
-      createMap([-1]);
+      createMap([0]);
     </script>
   </body>
 </html>

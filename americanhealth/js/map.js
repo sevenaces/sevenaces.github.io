@@ -33,20 +33,27 @@ function createMap(selectedDrgs)
 	    .attr('class', 'district')
 	    .attr('fill', function(d){
 	    	var ci = countriesNames.indexOf((d.properties["name"]));
-	    	var colorIndex;
+	    	var colorIndex = 0;
 	    	if(selectedDrgs[0] != -1)
 		    {
 		    	for(var i = 0; i < selectedDrgs.length; i++)
 		    	{
 			    	if(ci >= 0)
-			    		colorIndex += parseInt(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[i]]/prevelanceIndexMax[selectedDrgs[i]]));
+			    	{
+			    		if(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[i]]/prevelanceIndexMax[selectedDrgs[i]]) < 10)
+			    			colorIndex += parseInt(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[i]]/prevelanceIndexMax[selectedDrgs[i]]));
+			    		else
+			    			colorIndex = 0;
+			    		// console.log(d.properties["name"] + " : " + colorIndex + " " + (prevelanceIndexArray[ci][selectedDrgs[i]]) + "   " + prevelanceIndexMax[selectedDrgs[i]]);
+			    	}
 		    	}
 		    	colorIndex /= selectedDrgs.length;
 		    }
 		    else
 		    	colorIndex = parseInt((1 - allDiseasePrevelance[ci])*10);
-	    	if(ci == 0) console.log(colorIndex);
-	    	return color(9-colorIndex);
+	    	// if(ci == 0)
+	    	// 	console.log(colorIndex);
+	    	return color(10-colorIndex);
 	    })
 	    .attr('id', function(d){
 	    	// console.log(d.properties["name"]);
@@ -75,7 +82,7 @@ function createMap(selectedDrgs)
   				d3.selectAll('.district').attr('class', 'district');
 	  			d3.select(this).attr('class', 'district selected');
 	  			shrinkMap(true);
-				createHeartbeat(svg, 300, 600, 1000, 200, getData(d.properties["name"],[-1]));
+				createHeartbeat(svg, 500, 800, 1100, 300, getData(d.properties["name"],[-1]));
   			}  			
   		});
   	});
@@ -87,8 +94,8 @@ function shrinkMap(shrink)
 	{
 	  svg
 	    .transition()
-	    .duration(1000)
-	    .attr('transform', 'scale(.6) translate(-100,0)');
+	    .duration(300)
+	    .attr('transform', 'scale(.6) translate(-80,140)');
 	}
 	else
 	{

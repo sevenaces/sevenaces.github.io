@@ -28,7 +28,7 @@ html, body  {
 .map, .span12 {text-align: center;}
 h1, h2  {
   font-weight: normal;
-  font-family: Abel, verdana, sans-serif;
+  font-family: Abel, Arial, sans-serif;
   text-align: center;
   font-size: 60pt;
   color: #000;
@@ -42,7 +42,18 @@ h2  {
 }
 
 .content  {
+  margin-top: 30px;
+  border-radius: 10px;
+  /*background: #DDD;*/
   padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.filters  {
+  background: #999;
+  border-radius: 10px;
+  margin-left: 0px;
+  
 }
 
 
