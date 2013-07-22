@@ -43,24 +43,24 @@ function createMap(selectedDrgs, groupedDrg)
 	    	var count = 0;
 	    	if(selectedDrgs[0] != -1 && ci >=0)
 		    {
-		    	for(var j = 0; j < groupedDrg.length; j++)
-		    	{
-		    		for(var i = count; i < groupedDrg[j]; i++)
-		    		{
-		    			colorIndexTemp += (levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[count]]/prevelanceIndexMax[selectedDrgs[count]]));
-		    		}
-		    		colorIndexTemp /= groupedDrg[j];
-		    		colorIndex += parseInt(colorIndexTemp);
-		    		// colorIndexTemp += parseInt(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[i]]/prevelanceIndexMax[selectedDrgs[i]]));
-		    	}
-		    	colorIndex /= groupedDrg.length;
+		    	// for(var j = 0; j < groupedDrg.length; j++)
+		    	// {
+		    	// 	for(var i = count; i < groupedDrg[j]; i++)
+		    	// 	{
+		    	// 		colorIndexTemp += parseInt(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[count]]/prevelanceIndexMax[selectedDrgs[count]]));
+		    	// 	}
+		    	// 	colorIndexTemp /= groupedDrg[j];
+		    	// 	colorIndex += (colorIndexTemp);
+		    	// 	 colorIndexTemp += parseInt(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[i]]/prevelanceIndexMax[selectedDrgs[i]]));
+		    	// }
+		    	// colorIndex /= groupedDrg.length;
 		    	// console.log(d.properties["name"] + "  " + colorIndex);
 		    	// if(ci == 12) console.log(colorIndex);
-		    	// for(var i = 0; i < selectedDrgs.length; i++)
-		    	// {
-			    // 		colorIndex += parseInt(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[i]]/prevelanceIndexMax[selectedDrgs[i]]));
-		    	// }
-		    	// colorIndex /= selectedDrgs.length;
+		    	for(var i = 0; i < selectedDrgs.length; i++)
+		    	{
+			    		colorIndex += parseInt(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[i]]/prevelanceIndexMax[selectedDrgs[i]]));
+		    	}
+		    	colorIndex /= selectedDrgs.length;
 		    }
 		    else
 		    	colorIndex = parseInt((1 - allDiseasePrevelance[ci])*10);
