@@ -1,4 +1,4 @@
-var darkRed = '#8B0000';
+var darkRed = '#8F0000';
 var scaleYAdjust = 1.2;
 var scaleXAdjust = 20;
 
@@ -53,6 +53,19 @@ function createHeartbeat(svg, height, width, mx, my, heartbeatData)
     .y(y);
 
   d3.selectAll('.hb').remove();
+  
+  svg.append('rect')
+    .attr({
+     'x': mx + 10,
+     'y': my - height/2 - 10,
+     'width': width - 310,
+     'height': height,
+     'rx': 40,
+     'ry': 40,
+     'fill' : '#101010',
+     'stroke' : 'white',
+     'stroke-width': 2
+    });
 
   ref = svg
     .append('path')
@@ -60,7 +73,7 @@ function createHeartbeat(svg, height, width, mx, my, heartbeatData)
     .attr({
       'class': 'hb',
       'fill': 'none',
-      'stroke-width':1,
+      'stroke-width':2,
       'stroke': darkRed,
       d: line
     })
@@ -72,8 +85,8 @@ function createHeartbeat(svg, height, width, mx, my, heartbeatData)
     .attr({
       'class': 'hb',
       'fill': 'none',
-      'stroke-width':2,
-      'stroke': 'red',
+      'stroke-width':4,
+      'stroke': '#F00',
       'stroke-dasharray': 292 + " " + 900,
       d: line
     })

@@ -1,6 +1,6 @@
 html, body  {
-  background: #FFF;
-  color: #222;
+  background: #000;
+  color: #CCC;
 }
 #heartbeat  {
   background: black;
@@ -9,7 +9,7 @@ html, body  {
 
 .district {
   stroke-width: 1;
-  stroke: #9f1111;
+  stroke: #CCC;
 }
 
 .district:hover {
@@ -31,13 +31,13 @@ h1, h2  {
   font-family: Abel, Arial, sans-serif;
   text-align: center;
   font-size: 60pt;
-  color: #000;
+  color: #FFF;
 }
 
 h2  {
   padding-top: 10px;
   font-size: 30pt;
-  color:#999;
+  color:#AAA;
   border-top:1px solid #999;
 }
 
@@ -50,10 +50,16 @@ h2  {
 }
 
 .filters  {
-  background: #999;
-  border-radius: 10px;
-  margin-left: 0px;
   
+}
+
+.pager a {
+  margin: 0px ;
+  padding: 15px;
+}
+
+.filter-selected  {
+  background: #222 !important;
 }
 
 
@@ -76,3 +82,4 @@ h2  {
     padding-right: 5px;
   }
 }
+

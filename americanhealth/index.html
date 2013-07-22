@@ -52,7 +52,10 @@
         </div>
       </div>
       <div class="row filters">
-        <div class="span12 filter">blah</div>
+        <div class="span12 filter">
+          <ul class="pager" id="filters">
+          </ul>
+        </div>
       </div>
     </div>
     <script src="./js/jquery.js"></script>
@@ -72,8 +75,6 @@
         })
         .append('g')
         .attr('transform', 'translate(0, 0)');
-
-      createMap([0]);
     </script>
   </body>
 </html>
