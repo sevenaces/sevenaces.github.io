@@ -95,7 +95,7 @@ function createMap(selectedDrgs, groupedDrg)
   				d3.selectAll('.district').attr('class', 'district');
 	  			d3.select(this).attr('class', 'district selected');
 	  			shrinkMap(true);
-				createHeartbeat(svg, 500, 900, 1000, 300, getData(d.properties["name"],[-1]));
+				createHeartbeat(svg, 500, 900, 1020, 300, getData(d.properties["name"],[-1]));
   			}  			
   		});
   	// });

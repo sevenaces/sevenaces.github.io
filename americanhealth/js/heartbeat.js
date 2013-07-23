@@ -56,9 +56,9 @@ function createHeartbeat(svg, height, width, mx, my, heartbeatData)
   
   svg.append('rect')
     .attr({
-     'x': mx + 10,
+     'x': mx,
      'y': my - height/2 - 10,
-     'width': width - 310,
+     'width': width - 300,
      'height': height,
      'rx': 40,
      'ry': 40,
