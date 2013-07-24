@@ -1,5 +1,5 @@
 var levelsOfColor = 5;
-var color = d3.scale.linear().domain([1,levelsOfColor]).range(['white', 'purple']);
+var color = d3.scale.linear().domain([1,levelsOfColor]).range(['#FFFFD4', '#993404']);
 var grey = '#666';
 
 var tooltip = d3.select("body")

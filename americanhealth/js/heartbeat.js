@@ -1,4 +1,4 @@
-var darkRed = '#3F0000';
+var darkRed = '#4F0000';
 var scaleYAdjust = 1.2;
 var scaleXAdjust = 25;
 
