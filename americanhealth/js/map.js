@@ -1,4 +1,4 @@
-var levelsOfColor = 10;
+var levelsOfColor = 5;
 var color = d3.scale.linear().domain([1,levelsOfColor]).range(['white', 'purple']);
 var grey = '#666';
 
@@ -9,20 +9,24 @@ var tooltip = d3.select("body")
 	.style("border-radius", "5px")
 	.style("padding", "10px")
 	.style("color", "#000")
-	.style("border", "solid 2px #9f1111")
-	.style("font-family", "abel, verdana, sans-serif")
+	.style("border", "solid 2px purple")
+	.style("font-family", "'Blanch Condensed', abel, verdana, sans-serif")
+	.style("font-size", "19pt")
 	.style('background', 'white')
 	.style("visibility", "hidden")
 	.text("State Name");
 
 var selectFlag = false;
 var mapData;
-d3.json('./data/us-states.json', function(json){
+function mapInit(svg)
+{
+	d3.json('./data/us-states.json', function(json){
 		mapData = json;
-		createMap([-1], 0);
+		createMap(svg, [-1], 0);
 	});
+}
 
-function createMap(selectedDrgs, groupedDrg)
+function createMap(svgref, selectedDrgs, groupedDrg)
 {
 	var path = d3.geo.path();
 
@@ -30,7 +34,7 @@ function createMap(selectedDrgs, groupedDrg)
 		.attr("class", "district");
 
 	all_districts = districts.selectAll("path");
-	d3.select('svg').selectAll('path').remove()
+	d3.select(svgref).selectAll('path').remove();
   	// d3.json("./data/us-states.json", function(json) {
 	    all_districts
 	    .data(mapData.features)
@@ -95,7 +99,7 @@ function createMap(selectedDrgs, groupedDrg)
   				d3.selectAll('.district').attr('class', 'district');
 	  			d3.select(this).attr('class', 'district selected');
 	  			shrinkMap(true);
-				createHeartbeat(svg, 500, 900, 1020, 300, getData(d.properties["name"],[-1]));
+				createHeartbeat(svg, 1500, 200, 600, 1020, 300, getData(d.properties["name"],[-1]), true, true, false);
   			}  			
   		});
   	// });
@@ -108,13 +112,13 @@ function shrinkMap(shrink)
 	  svg
 	    .transition()
 	    .duration(300)
-	    .attr('transform', 'scale(.6) translate(-80,140)');
+	    .attr('transform', 'scale(.8) translate(-80,140)');
 	}
 	else
 	{
 	   svg
 	    .transition()
 	    .duration(400)
-	    .attr('transform', 'scale(1)');
+	    .attr('transform', 'scale(1.3)');
 	}
 }

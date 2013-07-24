@@ -1,6 +1,6 @@
-var darkRed = '#8F0000';
+var darkRed = '#3F0000';
 var scaleYAdjust = 1.2;
-var scaleXAdjust = 20;
+var scaleXAdjust = 25;
 
 // var heartbeatData = [0, .04, -0.04, 0, -0.04, 0.20, -0.20, 0.40, 0];
 // var heartbeatData1 = [0, .04, -0.04, 0, -0.04, 0.20, -0.20, 0.40, 0];
@@ -15,9 +15,9 @@ function previous(accessor){
   }
 }
 
-function createHeartbeat(svg, height, width, mx, my, heartbeatData)
+function createHeartbeat(svg, speed, height, width, mx, my, heartbeatData, refBool, trailBool, rectBool)
 {
-  console.log(heartbeatData);
+  // console.log(heartbeatData);
   // min width = height * 1.5;
   var path, ref, line;
   var zeros = [];
@@ -48,12 +48,13 @@ function createHeartbeat(svg, height, width, mx, my, heartbeatData)
   refHeartbeatData = temp;
 
   line = d3.svg.line()
-    .interpolate('bundle')
+    .interpolate('cardinal')
     .x(x)
     .y(y);
 
   d3.selectAll('.hb').remove();
-  
+  if(rectBool)
+  {
   svg.append('rect')
     .attr({
      'x': mx,
@@ -66,7 +67,10 @@ function createHeartbeat(svg, height, width, mx, my, heartbeatData)
      'stroke' : 'white',
      'stroke-width': 2
     });
+  }
 
+  if(refBool)
+  {
   ref = svg
     .append('path')
     .datum(refHeartbeatData)
@@ -78,6 +82,22 @@ function createHeartbeat(svg, height, width, mx, my, heartbeatData)
       d: line
     })
     .attr('transform', 'translate('+mx+','+my+')');
+  }
+
+  if(trailBool)
+  {
+    trail = svg
+    .append('path')
+    .datum(heartbeatData)
+    .attr({
+      'class': 'hb',
+      'fill': 'none',
+      'stroke-width':1,
+      'stroke': '#444',
+      d: line
+    })
+    .attr('transform', 'translate('+mx+','+my+')');
+  }
 
   path = svg
     .append('path')
@@ -87,23 +107,23 @@ function createHeartbeat(svg, height, width, mx, my, heartbeatData)
       'fill': 'none',
       'stroke-width':4,
       'stroke': '#F00',
-      'stroke-dasharray': 292 + " " + 900,
+      'stroke-dasharray': 500 + " " + 1400,
       d: line
     })
     .attr('transform', 'translate('+mx+','+my+')');
 
-    animateHeartbeat(path);
+    animateHeartbeat(path, speed);
 }
 
-function animateHeartbeat(path)
+function animateHeartbeat(path, speed)
 {    
   path.attr('stroke-dashoffset', 0);    
   path.transition()
-    .duration(2000)
+    .duration(speed)
     .ease('linear')
-    .attr('stroke-dashoffset', -1200)
+    .attr('stroke-dashoffset', -1900)
     .each("end", function(d,i){
-      animateHeartbeat(path);
+      animateHeartbeat(path, speed);
     });
 }
 
@@ -130,13 +150,11 @@ function getData(state, drgs)
     {
       for(var i = 0; i < drgs.length; i++)
       {
-        prevelanceIndex += 1 - prevelanceIndexArray[countriesNames.indexOf(state)][drgs[i]]/(prevelanceIndexMax[drgs[i]]+01);
+        prevelanceIndex += 1 - prevelanceIndexArray[countriesNames.indexOf(state)][drgs[i]]/(prevelanceIndexMax[drgs[i]]);
         averagePrevelance += averagePrevelanceArray[drgs[i]];
       }
       prevelanceIndex /= drgs.length;
       averagePrevelance /= drgs.length;
-      
-      
     }
     else
     {

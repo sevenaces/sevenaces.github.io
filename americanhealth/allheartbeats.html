@@ -41,9 +41,14 @@
           <h2>How healthy are the United States of America?</h2>
         </div>
       </div>
+      <!--<div class="row">
+        <div class="span8 offset2">
+         <p class="desc">The following is a representation of how healthy the states of United States of America are. The data is based on prevelance of various medical conditions. (All data is per capita for the state)</p></div>
+      </div>-->
       <div class="row">
         <div class="span12 content">
           <div id="map"></div>
+          <div id="heartbeat"></div>
         </div>
       </div>
       <div class="row filters">
@@ -57,7 +62,6 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/d3.v3.min.js"></script>
     <script src="./js/data.js"></script>
-    <script src="./js/map.js"></script>       
     <script src="./js/heartbeat.js"></script>
     <script src="./js/filters.js"></script>
     <script>
@@ -70,8 +74,8 @@
         })
         .append('g')
         .attr('transform', 'translate(0, 0)');
-        mapInit();
-        filtersInit();
+
+        createHeartbeat(svg, 500, 900, 190, 300, getData('West Virginia',[0]), true, true, false);
     </script>
   </body>
 </html>

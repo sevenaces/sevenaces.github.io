@@ -9,7 +9,7 @@ html, body  {
 
 .district {
   stroke-width: 1;
-  stroke: #CCC;
+  stroke: #FFF;
 }
 
 .district:hover {
@@ -28,7 +28,7 @@ html, body  {
 .map, .span12 {text-align: center;}
 h1, h2  {
   font-weight: normal;
-  font-family: Abel, Arial, sans-serif;
+  font-family: "Blanch Condensed", Arial, sans-serif;
   text-align: center;
   font-size: 60pt;
   color: #FFF;
@@ -62,18 +62,6 @@ h2  {
   background: #222 !important;
 }
 
-
-.tooltip  {
-  position: absolute;
-  z-index: 10;
-  border-radius: 4px;
-  padding: 10px;
-  border: 1px solid #9f1111;
-  color: #000;
-  background: #CCC;
-  visibility: hidden;
-}
-
 @media (max-width: 980px) {
   /* Enable use of floated navbar text */
   .navbar-text.pull-right {
@@ -83,3 +71,10 @@ h2  {
   }
 }
 
+#mainHeart {
+  margin-top: 30px;
+}
+
+.bordertop  {
+  border-top: 1px solid #999;
+}

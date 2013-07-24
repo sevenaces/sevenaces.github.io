@@ -8,3 +8,17 @@
 // 		$('#' + pid).parent().attr('class', 'active');
 // 	}
 // });
+var pid;
+$('.pager li a').click(function(){
+	pid = (this.href.substring(1+this.href.indexOf('#')));
+	
+	switch(pid)
+	{
+		case 'info':
+			console.log('INFO TO BE DISPLAYED');
+			break;
+
+		default:
+			break;
+	}
+});
