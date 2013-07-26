@@ -1,0 +1,24 @@
+h2	{
+	font-weight: normal;
+}
+
+h1	{
+	color: #333;
+	font-weight: normal;
+	font-size: 50pt;
+}
+
+hr	{
+	color: white;
+}
+
+.masthead	{
+	padding-top: 30px;
+}
+
+
+.labels	{
+	font-size: 18px;
+	font-family: Georgia;
+	opacity: 0.7;
+}

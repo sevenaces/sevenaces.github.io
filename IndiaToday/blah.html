@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>India Today 2011 - 2012</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+
+    <!--<script src="http://use.edgefonts.net/abel.js"></script>-->
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Process</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <h2>Who rules IndiaToday?</h2>
+      </div>
+    </div>
+    <hr />
+  <!--   <div class="container">
+        <div class="row">
+            <div class="span2 offset1">
+                <h1>What?</h1>
+            </div>
+            <div class="span8">
+                <p>An explanation to this infographic and how we came about it. n explanation to this infographic and how we came about it. n explanation to this infographic and how we came about it. n explanation to this infographic and how we came about it.</p>
+            </div>
+        </div>
+    </div> -->
+    <div class="container">
+        <div class="row">
+            <div class="span12" id="main">
+
+            </div>
+        </div>
+    </div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/d3.v3.min.js"></script>
+    <script>
+        
+        var height = 500, width = 50000;
+        var issueHeight = 250, issueWidth = 100, issuePadding = 5, issueMargin = 20;
+        var lineMargin = 20;
+        var partyFlag = true;
+        var color = [d3.scale.linear().domain([1,10]).range(['#000099', '#000066']), d3.scale.linear().domain([1,10]).range(['#009900', '#006600'])]
+        var data;
+        var svg = d3.select('#main').append('svg')
+            .attr({
+                'width': width,
+                'height': height
+            });
+
+        d3.json('./data/data.json', function(json){
+            data = json;
+            var c = 0;
+            for(var articleID in data)
+            {
+                createBox(articleID, data[articleID], 150*c++ + 30, 150);
+                // console.log(articleID);
+            }
+            createLables();
+        });
+
+        
+
+        function createBox(articleID, articleData, xi, yi)
+        {
+            for(var i = 0; i < articleData.length; i++)
+            {   
+                if(articleData[i]['freq'] == 0)
+                {
+                    articleData.splice(i,1)
+                }
+            }
+            var polHeight = issueHeight / articleData.length;
+            var counter = 0;
+            var firstSection = 0;
+            svg.append('rect')
+                .attr({
+                    'height': issueHeight + issuePadding,
+                    'width' : issueWidth + 5,
+                    'x': xi - issuePadding/2,
+                    'y': yi - issuePadding/2 - issueHeight/2,
+                    'fill': 'none',
+                    'stroke': '#444',
+                    'stroke-width': '2px'
+                });
+
+            flag = true;
+            svg.selectAll('rect .politician')
+                .data(articleData)
+                .enter()
+                .append('rect')
+                .attr({
+                    'height': polHeight,
+                    'width' : issueWidth,
+                    'x': xi,
+                    'y': function(d, i){
+                        // console.log(polHeight);
+                        if(d['party'] == 1)
+                        {
+                            firstSection++;
+                            return (yi + issueHeight - polHeight*counter++ - polHeight);
+                        }
+                        else if(d['party'] == 0)
+                        {
+                            return(yi + polHeight*counter++ - polHeight);
+                        }
+                    },
+                    'fill': function(d,i) {return color[d['party']](d['freq']);},
+                    // 'fill': '#CCC',
+                    'class' : 'politician'
+                });
+                createLine(xi-lineMargin, xi+lineMargin+issueWidth, yi + polHeight*firstSection + polHeight,  yi + polHeight*firstSection + polHeight);
+        }   
+        function createLine(x1, x2, y1, y2)
+        {
+            svg.append('line')
+                .attr({
+                    'x1': x1, 'x2': x2,
+                    'y1': y1, 'y2': y2,
+                    'stroke': '#444',
+                    'stroke-width': '2px'
+                });
+        }
+    </script>
+  </body>
+</html>

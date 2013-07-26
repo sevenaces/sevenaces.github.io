@@ -1,6 +1,19 @@
 var levelsOfColor = 5;
-var color = d3.scale.linear().domain([1,levelsOfColor]).range(['#FFFFD4', '#993404']);
+// var levelsOfColor = 10;
+// var color = d3.scale.linear().domain([1,levelsOfColor]).range(['#100000', '#F40000']);
+// var color = d3.scale.linear().domain([1,levelsOfColor]).range(['#222255', '#222DD']);
 var grey = '#666';
+
+function color(num)
+{
+	var color = [ "#1A9641", "#FDAE61", "#FFFFBF", "#A6D96A","#D7191C"];
+	if(num > 5)
+		return color[0]
+	if(num == -1)
+		return '#999';
+	return color[5-num];
+
+}
 
 var tooltip = d3.select("body")
 	.append("div")
@@ -18,23 +31,25 @@ var tooltip = d3.select("body")
 
 var selectFlag = false;
 var mapData;
-function mapInit(svg)
+function mapInit()
 {
 	d3.json('./data/us-states.json', function(json){
 		mapData = json;
-		createMap(svg, [-1], 0);
+		createMap([-1], 0);
 	});
 }
 
-function createMap(svgref, selectedDrgs, groupedDrg)
+function createMap(selectedDrgs, groupedDrg)
 {
 	var path = d3.geo.path();
+
+	// svg.select('g').remove();
 
   	var districts = svg.append("g")
 		.attr("class", "district");
 
 	all_districts = districts.selectAll("path");
-	d3.select(svgref).selectAll('path').remove();
+	svg.selectAll('path').remove();
   	// d3.json("./data/us-states.json", function(json) {
 	    all_districts
 	    .data(mapData.features)
@@ -47,19 +62,6 @@ function createMap(svgref, selectedDrgs, groupedDrg)
 	    	var count = 0;
 	    	if(selectedDrgs[0] != -1 && ci >=0)
 		    {
-		    	// for(var j = 0; j < groupedDrg.length; j++)
-		    	// {
-		    	// 	for(var i = count; i < groupedDrg[j]; i++)
-		    	// 	{
-		    	// 		colorIndexTemp += parseInt(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[count]]/prevelanceIndexMax[selectedDrgs[count]]));
-		    	// 	}
-		    	// 	colorIndexTemp /= groupedDrg[j];
-		    	// 	colorIndex += (colorIndexTemp);
-		    	// 	 colorIndexTemp += parseInt(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[i]]/prevelanceIndexMax[selectedDrgs[i]]));
-		    	// }
-		    	// colorIndex /= groupedDrg.length;
-		    	// console.log(d.properties["name"] + "  " + colorIndex);
-		    	// if(ci == 12) console.log(colorIndex);
 		    	for(var i = 0; i < selectedDrgs.length; i++)
 		    	{
 			    		colorIndex += parseInt(levelsOfColor*(1 - prevelanceIndexArray[ci][selectedDrgs[i]]/prevelanceIndexMax[selectedDrgs[i]]));
@@ -68,12 +70,10 @@ function createMap(svgref, selectedDrgs, groupedDrg)
 		    }
 		    else
 		    	colorIndex = parseInt((1 - allDiseasePrevelance[ci])*10);
-	    	// if(ci == 0)
-	    	// 	console.log(colorIndex);
-	    	return color(10-colorIndex);
+	    	if(ci == 16) colorIndex = -1;
+	    	return color(parseInt(colorIndex));
 	    })
 	    .attr('id', function(d){
-	    	// console.log(d.properties["name"]);
 	    	return d.properties["name"];
 	    })
 	    .attr("d", path)

@@ -10,7 +10,6 @@ function filtersInit()
 	.enter()
 	.append('li')
 	.append('a')
-	.attr('href', '#')
 	.attr('id', function(d,i){ return 'filter-' + i;})
 	.text(function(d) {return d;})
 	.on('click', function(d,i){ toggleSelection(d,i);})
@@ -23,8 +22,8 @@ function toggleSelection(label, labelId)
 	var indeces = new Array();
 	groupedDrgs = [];
 
-	if(singleFilter)
-	{
+	// if(singleFilter)
+	// {
 		d3.selectAll('.filter-selected').attr('class', '');
 		d3.select('#filter-' + labelId).attr('class', 'filter-selected');
 		selectedDrgs = label;
@@ -41,40 +40,41 @@ function toggleSelection(label, labelId)
 					indeces.push(index);
 			} while(index != -1)
 		}
-	}
-	else
-	{
-		if(d3.select('#filter-' + labelId).attr('class') != 'filter-selected')
-		{
-			d3.select('#filter-' + labelId).attr('class', 'filter-selected');
-			selectedDrgs.push(label);
-		}
-		else
-		{
-			d3.select('#filter-' + labelId).attr('class', '');
-			selectedDrgs.splice(selectedDrgs.indexOf(label), 1);
-		}
+	// }
+	// else
+	// {
+	// 	if(d3.select('#filter-' + labelId).attr('class') != 'filter-selected')
+	// 	{
+	// 		d3.select('#filter-' + labelId).attr('class', 'filter-selected');
+	// 		selectedDrgs.push(label);
+	// 	}
+	// 	else
+	// 	{
+	// 		d3.select('#filter-' + labelId).attr('class', '');
+	// 		selectedDrgs.splice(selectedDrgs.indexOf(label), 1);
+	// 	}
 
-		var index = -1;
-		var indeces = new Array();
-		groupedDrgs = [];
+	// 	var index = -1;
+	// 	var indeces = new Array();
+	// 	groupedDrgs = [];
 
 
-		for(var i = 0; i < selectedDrgs.length; i++)
-		{
-			do
-			{
-				index = drgCategories.indexOf(selectedDrgs[i], index+1)
-				if(index >=0) 
-					indeces.push(index);
-			}while (index >=0);
+	// 	for(var i = 0; i < selectedDrgs.length; i++)
+	// 	{
+	// 		do
+	// 		{
+	// 			index = drgCategories.indexOf(selectedDrgs[i], index+1)
+	// 			if(index >=0) 
+	// 				indeces.push(index);
+	// 		}while (index >=0);
 
-			groupedDrgs.push(indeces.length);		
-		}
+	// 		groupedDrgs.push(indeces.length);		
+	// 	}
 
-		if(indeces.length == 0)
-			indeces = [-1];
-	}
+	// 	if(indeces.length == 0)
+	// 		indeces = [-1];
+	// }
+	// console.log(indeces);
 	createMap(indeces, groupedDrgs);
 }
 

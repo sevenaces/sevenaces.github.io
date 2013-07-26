@@ -47,15 +47,6 @@
           <div id="mainHeart"></div>
         </div>
         </div>
-        <div class="container">
-        <div class="row">
-          <div class="span4 offset4">
-            <ul class="pager">
-              <li><a href="#info">Info</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="container bordertop">
       <div class="row headerRow">
@@ -74,7 +65,8 @@
       </div>
       <div class="row">
         <div class="span12">
-          <p style="height:1000px"></p>
+          <ul class="pager" id="filters">
+          </ul>
         </div>
       </div>
     </div>
@@ -103,14 +95,15 @@
       // PANEL 2
       var svg = d3.select('#map').append('svg')
         .attr({
-          'height': 800,
+          'height': 700,
           'width' : '100%',
           'id'    : 'map'
         })
         .append('g')
         .attr('transform', 'translate(0, 0) scale(1.3)');
 
-      mapInit('svg#map');
+      mapInit(svg);
+      filtersInit();
     </script>
   </body>
 </html>

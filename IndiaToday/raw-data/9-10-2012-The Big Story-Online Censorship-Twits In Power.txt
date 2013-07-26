@@ -1,0 +1,99 @@
+The Big Story ONLINE CENSORSHIP
+
+TWITS INPOWER
+The Government's attempt to block `inflammatory' content on the Internet was a public relations disaster
+By Shiv Aroor
+
+t 11 a.m. on August 20, a file marked `RESTRICTED/IMMEDIATE' landed on the desk of Department of Telecom (DoT) Director Subodh Saxena at Sanchar Bhawan. It was from the Ministry of Home Affairs and contained a sheaf of documents topped by a terse four-page letter to Internet service providers such as Airtel, BSNL and Tata ordering them to "immediately block access" across the country to a list of 39 YouTube videos, 10 Facebook pages, 21 specific Web pages, including mainstream news reports, and 16 Twitter accounts (including the account of this correspondent). It was the latest of three similar letters sent out on August 17, 18 and 19, listing a total of 309 specific Internet items. Saxena was only a cog in what was an operation ordered at the highest levels of Government--the Prime Minister's Office, Telecom Minister Kapil Sibal, and Home Minister Sushilkumar Shinde. Saxena quickly signed it, setting in motion what his department and the Government hoped would be its first real crackdown on social media. But it wasn't quite the stealth operation the Government hoped it would be. The crackdown was, by all accounts, a public relations disaster, leaving the Government looking not just oppressive and whimsical, but also uproariously incompetent. What the Government had hoped would be an efficient surgical strike on digital hatemongering--and perhaps political dissent--ended up being perceived as
+
+A
+
+an arbitrary, clumsy assault on freedom of expression that achieved little apart from focus attention on just how little the establishment understood the nature of well, the beast. The Government counter-offensive was intended to block inflammatory content such as Facebook discussion groups that were posting material about "Hindus killing Muslims in Assam". Some Facebook users were found to be indulging in `hate speech' and inciting violence. There were YouTube videos designed to inflame passions; other users called for communal violence in their responses to news videos. The hit-list also included proactive blogs on the violence which contained purportedly concocted posts. There were 16 Twitter accounts which were found to have tweeted boisterously about the violence in Assam and Mumbai. Bangalore-based Pranesh Prakash, who researches Internet freedom and governance at the Bangalore-based
+
+Centre for Internet & Society (CIS), and whose nuanced analysis of the blocked sites on August 22 became a touchstone for media attention, says, "It is unclear whether the Government has exercised its powers responsibly in this circumstance. The blocking of many of the items on that list is legally questionable and morally indefensible, even while some of the items ought, in my estimation, to be removed." In the Government's classified `block list', alongside websites that purportedly contained calls to seek vengeance for "Hindu girls chopped up by Muslims", there were media reports reporting the violence, the Twitter handles of two mainstream journalists, and just as surprisingly, a self-effacing Pune-based software entrepreneur Amit Paranjape, 40. "This whole blocking episode has left me surprised, confused and frustrated. I really wonder why I would end up on such a blacklist when what I usually tweet about is cricket, science & technology, economics and Pune-related info," says Paranjape. The secret order that went out on August 20 drew its hit-list from a 72-hour slapdash online combing operation ordered by the Ministry of Home Affairs. The National Technical Research Organisation, set up in 2004 with an annual budget of Rs 750 crore, and a handful of other state agencies including India's online emergency response unit CERT-in and Intelligence Bureau, trawled the Internet for "inflammatory" content.
+
+HOW THE GOVERNMENT BLOCKS
+1. DoT forwarded list of site addresses,Twitter handles, Facebook pages and YouTube video links to Internet Service Providers (ISPs) such as Airtel,Tata and MTNL. 2. ISPs fed those addresses into a Domain Name Server (DNS), the nucleus of their respective networks. 3. When users tried accessing the blocked content, they received a `blocked'message which simply said: "The URL you requested has been blocked as per instructions from Department of Telecom."
+
+LOOPHOLES IN THE `BLOCKOUT'
+1. DoT listed the sites and Facebook pages with the `http'tag, but not the more secure clones starting with `https'that remained accessible. 2. ISPs blocked access to Twitter profiles, but only Twitter can block accounts (the company has asked for time to comply). 3. Much of the content blocked by ISPs could still be accessed using proxy sites, a profusion of which exists on the Internet.
+
+"Once we realised that the content wasn't being taken off (by social media companies), we were quick to act.There still isn't 100 per cent compliance. If they fail to comply, we will not hesitate in taking the strictest possible action."
+SACHIN PILOT, Union Minister of State for Communications & IT
+SAURABH SINGH/www.indiatodayimages.com
+
+"We need a national law to stop abuse of social media. Those who provide these online platforms will have to cooperate with us.Allow people to exchange information but be cautious of not disseminating misinformation."
+KAPIL SIBAL, Union Minister of Communications and IT
+
+Electronic sentinel filters at the country's national Internet gateway were programmed with a set of catchphrases such as Assam, Assam Violence, North-East, Amar Jawan, Myanmar, Muslim and Riot. Late at night on August 17, the Department of Information Technology sent out an advisory to Google, Facebook, Twitter and a handful of other firms asking them to conduct "due diligence" on possibly harmful content. "Once we realised that the content wasn't being taken off (by social media firms), we were quick to act," Minister of State for Communications & IT Sachin Pilot told news channel HEADLINES TODAY a day before the crackdown began. "There still isn't 100 per cent compliance. If they (social media companies) fail to comply, we will not hesitate in taking the strictest possible action." Minutes after news of the crackdown went viral on Twitter, columnist and South Asia scholar Sadanand Dhume wrote, "India's Internet cen-
+
+30
+
+INDIA TODAY N SEPTEMBER 10, 2012
+
+SEPTEMBER 10, 2012 N INDIA TODAY
+
+31
+
+The Big Story ONLINE CENSORSHIP
+sorship is so inept, petty and partisan that it must be a secret weapon designed to make the Chinese die of laughter." This was especially hilarious since China has blocked Twitter since 2009, and its millions make do with a highly regulated and monitored Twitter hybrid called Weibo. Caught in a public crossfire, the Government fell over itself to clarify: G On August 23, hours after the crackdown became public knowledge, Telecom Secretary R. Chandrasekhar went on record on a TV channel categorically denying that there was a crackdown on social media. G On August 23, when the DoT letter issuing the blocking instructions appeared in the media (and went viral online), establishing that the crackdown was very real, the Government went quiet. MoS Communication & IT Milind Deora tweeted that night, "There is absolutely no intent of the Government to curb freedom of social media platforms." Ironically, Deora's official Twitter account was erroneously suspended briefly by Twitter a day after the Government's crackdown began--the real account had been mistaken for an imposter account forcing the DoT into a frenzy of correspondence with the San Francisco-based firm. G On August 24, Home Minister Sushilkumar Shinde (whose ministry led the entire exercise) finally admitted that a crackdown was in progress, saying outside Parliament, "We are taking action only against those sites which can cause damage. We will not level charges unnecessarily on others be it SMS or Facebook or Twitter. Be assured of that. There is no censorship at all." G On August 24, Telecom Minister Kapil Sibal said in a written statement, "The accusations that we are aggressively targeting someone's account or websites are incorrect." G On August 26, Telecom Secretary Chandrasekhar re-appeared on TV to say that "individuals" aggrieved by the block could put up a representation to the Government explaining why they should not be blocked, or they could take recourse to courts. Things reached fever pitch when Gujarat Chief Minister Narendra Modi,
+PEOPLE TRYTO BOARD A TRAIN FOR GUWAHATI AT A RAILWAY STATION IN BANGALORE
+
+HOW OTHER NATIONS RATE ON SOCIAL MEDIA FREEDOM SCALE
+PAKISTAN G A popular Pakistani satirist, who tweeted under @MajorlyProfound, disappeared from Twitter and his/her blog vanished on August 4. Nobody knows the person's identity or what has happened to him/her. G Twitter was blocked for a day in May after the company went slow on taking down "blasphemous"tweets inviting users to participate in a competition to draw Prophet Muhammad. G Pakistan blocked Facebook for two days in 2010 for almost the same sort of "blasphemy".
+
+CHINA Facebook has been blocked in China since July 2008. G China blocked Twitter and several other sites 48 hours before the 20th anniversary of the Tiananmen Square episode in June 2009. They remain blocked.
+G
+
+IRAN G Blocked Twitter and Facebook in May 2009 ahead of the presidential elections.
+REUTERS
+
+who is cheerfully retweeted by hundreds of his Twitter followers even when he informs them about a visit to a solar power project, made his display picture black in solidarity with those at the receiving end of this "crackdown on freedom of speech". There was widespread online hilarity at the gawky manner in which the Government cracked down. `(Bollywood starlet) Poonam Pandey under-
+
+stands Twitter better than the Government', went one reaction. Many were also not too surprised at the inclusion of certain Twitter users on the hit-list. One of them was Tajinder Bagga, founder of the controversial Bhagat Singh Kranti Sena, a right-wing outfit that claimed responsibility for a physical attack on Team Anna member and lawyer Prashant Bhushan in 2011.
+
+CONTENT BLOCKED ON YOUTUBE/FACEBOOK INCLUDES
+
+CONTENT BLOCKED ON WEBSITES INCLUDES
+
+1 Video containing comments where Government notes that "people are provoking Hindus to join the riots". 2 YouTube user Ajitkumar2350, who was listed as "commenting on videos and provoking Hindus". 3 A Facebook group that contained a discussion titled "Killing of innocent Muslims in Assam".
+
+1 Shariaunveiled.wordpress.com Reason Blog was titled "Hindu women in India found raped, chopped into pieces". 2 Reddit.com Reason The news sharing site routed a report titled "Hindus kill Muslims in India, 44 dead". 3 Firstpost.com Reason Posted a news report titled "MIM chief urges Muslims to help Assam riot victims".
+
+Economist Bibek Debroy, who gets his news primarily from Twitter, feels that the Government didn't follow due process of law before the attempted crackdown. "Accounts have been blocked with a shotgun approach, hoping that something somewhere sticks. Those who were blocked were given no reasons. At best, this was sheer incompetence. At worst, it suggests something else was the motive," he says. This was a notion that gathered momentum immediately, that the Government had used the North-east issue and public order exigencies to simply gag dissent. "The blocking of Twitter handles and websites demonstrates vindictive and arbitrary use of authority. That's the REAL DANGER," tweeted actor Kabir Bedi. "Only the government seems to have Freedom of Expression. All others are almost suffocating to have an Expression of Freedom," echoed another actor, Anupam Kher. As the backlash peaked, the Prime
+
+Minister's Office (PMO) was able to get state agencies to lean enough on Twitter to block as many as six parody PMO accounts. The Prime Minister's media adviser Pankaj Pachauri chose to quote Spiderman on Twitter: "With great power comes great responsibility." His timing and misreading of the online mood made his tweet an open invitation for mocking disdain. Parody accounts are not exclusive to India. They lampoon US President Barack Obama, Queen Elizabeth II and even Facebook founder Mark Zuckerberg. Their presence is well understood, accepted and even admired. Twitter even has rules that permit them as long as they declare clearly that they are parody handles. Yet, PMO believed that parody handles could be mistaken for the real thing. "This is as unbelievable and stupid as it can get," says Rahul Roushan, who runs the very popular news satire site Faking News, and regularly, often mercilessly, parodies the Government to nearly
+
+100,000 followers on Twitter. Twitter and Facebook do afford a platform for incitement, communally provocative comments and even direct calls to violent or illegal acts. They also tend to make possible the viral spread of controversial content. An Intelligence Bureau (IB) officer, requesting anonymity, says, "What the home ministry has managed by trying to hit the wrong people is provide valuable warning to real trouble-makers. So if we are monitoring certain accounts, then intelligence dries up, as these users wisen up and take some other form or identity." But wasn't IB one of the agencies that recommended sites and individuals for blocking? "Yes, but there is very little sharing of information with other agencies," says the officer. "Cyber security, online intelligence gathering and countering the use of social media for aggression against the nation is a complicated business. It needs an apex authority." Two days after the crackdown was set in motion, Sibal (who, incidentally, hasn't managed to do anything about someone who impersonates him on Twitter), told HEADLINES TODAY, "We need a national law to stop abuse of social media. Those who provide these online platforms will have to cooperate with us." Many anticipated that Sibal's party colleague and former minister Shashi Tharoor, who was reportedly chastised by his government in 2009 for what was seen as an indiscreet tweet about travelling economy ("cattle class"), would have something to say. Tharoor kept a studied distance, despite being
+
+"We are taking action only against those sites which can cause damage. We will not level charges unnecessarily on others be it SMS or Facebook or Twitter. Be assured of that.There is no censorship at all."
+SUSHILKUMAR SHINDE, Union Home Minister
+
+32
+
+INDIA TODAY N SEPTEMBER 10, 2012
+
+SEPTEMBER 10, 2012 N INDIA TODAY
+
+33
+
+The Big Story ONLINE CENSORSHIP
+harangued by many of his nearly 1.5 million Twitter followers, only offering in a newspaper column that the use of social media to spread inflammatory material "constitutes a new security threat that cannot be ignored". The international impact of the UPA Government's crackdown was immediate. A day after the crackdown, US State Department spokesperson Victoria Nuland said at a Washington news conference on August 23, "As the Indian Government seeks to preserve security, we are urging them also to take into account the importance of freedom of expression in the online world." In the international mainstream media, the crackdown was almost uniformly criticised as clumsy and disturbing. For social media companies, which have long seen China and India as two similarly important, but
+AFP
+
+ON THE TWITTER BLACKLIST
+The 16 `tweeples' whose accounts were blocked
+
+@PM0India Identity Anonymous Profile Unofficial account of Prime Minister's Office. @Dosabandit Identity Anonymous Profile Author at news and opinion site Centre Right India. @Eagleeye47 Identity Anonymous Profile Traveller,news addict,social activist,amateur photographer. @Twitanic Identity Anil Kohli, 58, Mumbai Profile Keen observer of media and politics in India. @TajinderBagga Identity Tajinder Pal Singh Bagga Profile President, Bhagat Singh Kranti Sena, Frustrated from traitors & anti-nationals. @ShivAroor Identity Shiv Aroor, 31, Delhi Profile Deputy Editor at
+
+Headlines Today.Views own, RTs not=endorsement. Full-time troll-slayer. @KanchanGupta Identity Kanchan Gupta Profile Writer and journalist. Editorial Director, Niti Digital. @AParanjape Identity Amit Paranjape Profile Entrepreneur with diverse interests: IT, Healthcare, Current Affairs, Cricket, Pune. @Barbarindian (erroneously mentioned twice in list) Identity Anonymous Profile Unapologetic Hindu-far/extreme right winger, patriot, capitalist, conspicuous consumer, global warming denier. @SumeetCJ Identity Sumeet Joshi Profile Kya karoge jaanke? @DrPravinTogadia Identity Pravin Togadia
+
+Profile Renowned cancer surgeon; International Working President,Vishwa Hindu Parishad. @i_Panchajanya Identity Anonymous Profile Avid Nationalist, Reluctant business Leader. @ScamSutra Identity Prashant Profile Right-wing media professional @Ekakizunj Identity Anonymous Profile Every Indian should be a lone warrior.True sons of Bharat will ensure that the traitors are soon extinct. @Sanghpariwar Identity Anonymous Profile Tweets are personal, RSS is not on Twitter. @Redditindia Identity Reddit India Profile Official automated Twitter feeder of Reddit India.
+
+supremely different markets, the move boded ill. Twitter, which has sought time to respond to the Government's call to block content, is playing its cards carefully. Already shut out of China, one the world's largest Internet markets, it doesn't want to the axe to fall in India as well. Officially, it is still weighing its next move. Unofficially, the company hopes the current backlash will get the Government to back off a little. Twitter is considering ramping up its human and technical presence in the country. In response to a shortlist of specific questions on its views and plans following the Indian crackdown, Twitter spokesperson Carolyn Penner refused to comment. "I don't think Twitter will be very worried. If anything, they should keep quiet, stay low, and let this brouhaha blow over," says technology commentator Narendra Nag. "Governments need to wake up to the fact that social media is here to stay, in one form or the other, for better or worse. They also need to get used to the idea that short of shutting down all telecom networks, they cannot control people's ability to communicate with each other any longer." The Indian Government is hardly alone in the new attention it pays to social media. Following the 2011 riots in the UK, the government there ordered a panel of experts to examine, among other things, the role that social media and instant messaging may have played in fuelling unrest. In what was seen as a wise and nuanced report that precluded any knee-jerk crackdowns, the panel concluded that while the violence was certainly aggravated by social media, "viral silence may have as many dangers as viral noise." It also specifically advised 10 Downing Street against precisely the kind of crackdown that the Indian Government went about conducting in August. The Government remains steadfast in blocking content it feels perpetuates hate speech, but it has made no move to correct errors that have crept into its sweeping crackdown. The 309 items on its blacklist remain inaccessible to many users. Home ministry sources also hint that the Government's "follow-up" will be more discreet. I
+
+34
+
+INDIA TODAY N SEPTEMBER 10, 2012
+
+
