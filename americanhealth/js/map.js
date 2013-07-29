@@ -7,12 +7,13 @@ var grey = '#666';
 function color(num)
 {
 	var color = [ "#1A9641", "#FDAE61", "#FFFFBF", "#A6D96A","#D7191C"];
-	if(num > 5)
+	if(isNaN(num))
+		return '#999';
+	if(num >= 5)
 		return color[0]
 	if(num == -1)
 		return '#999';
-	return color[5-num];
-
+	return color[4-num];
 }
 
 var tooltip = d3.select("body")
@@ -71,6 +72,8 @@ function createMap(selectedDrgs, groupedDrg)
 		    else
 		    	colorIndex = parseInt((1 - allDiseasePrevelance[ci])*10);
 	    	if(ci == 16) colorIndex = -1;
+	    	if(d.properties["name"] == "Nevada")
+	    		console.log("SAD  " + colorIndex);
 	    	return color(parseInt(colorIndex));
 	    })
 	    .attr('id', function(d){
