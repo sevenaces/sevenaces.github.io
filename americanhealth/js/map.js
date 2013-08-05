@@ -6,13 +6,16 @@ var grey = '#666';
 
 function color(num)
 {
-	var color = [ "#1A9641", "#FDAE61", "#FFFFBF", "#A6D96A","#D7191C"];
+	var color = ["#FEE5D9", "#FCAE91", "#FB6A4A", "#DE2D26", "#A50F15"];
+	// var color = ["#FFFFB2", "#FECC5C", "#FD8D3C", "#F03B20", "#BD0026"];
+	// var color = ["#1A9641", "#A6D96A", "#FFFFBF", "#FDAE61", "#D7191C"];
 	if(isNaN(num))
 		return '#999';
 	if(num >= 5)
-		return color[0]
-	if(num == -1)
+		return color[4];
+	if(num < 0)
 		return '#999';
+	
 	return color[4-num];
 }
 
@@ -70,10 +73,10 @@ function createMap(selectedDrgs, groupedDrg)
 		    	colorIndex /= selectedDrgs.length;
 		    }
 		    else
-		    	colorIndex = parseInt((1 - allDiseasePrevelance[ci])*10);
+		    {
+		    	colorIndex = parseInt((1 - allDiseasePrevelance[ci])*levelsOfColor);
+		    }
 	    	if(ci == 16) colorIndex = -1;
-	    	if(d.properties["name"] == "Nevada")
-	    		console.log("SAD  " + colorIndex);
 	    	return color(parseInt(colorIndex));
 	    })
 	    .attr('id', function(d){
