@@ -12,7 +12,9 @@
     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
     <link href="./css/leaflet.css" rel="stylesheet">
     <link href="./css/main.css" rel="stylesheet">
-
+    <style>
+        #map { height: 380px; width:100%; }
+    </style>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
@@ -61,7 +63,7 @@
 
             <div class="span12">
             <div class="hero-unit">
-                <h1>The Roads and Railway Network of India</h1>
+                <h3>The Roads and Railway Network of India</h3>
                 <div id="map"></div>
                 
             </div>
@@ -74,7 +76,12 @@
     <!--<script src="./js/d3.v3.min.js"></script>-->
     <script src="./js/leaflet.js"></script>
     <script>
+    var map = L.map('map').setView([28.63, 77.21], 6);
 
+    L.tileLayer('https://tiles.mapbox.com/v3/sevenaces.roads/{z}/{x}/{y}.png?updated=1376377680000', {
+        attribution: 'Served from MapBox',
+        maxZoom: 18
+    }).addTo(map);
     </script>
   </body>
 </html>
