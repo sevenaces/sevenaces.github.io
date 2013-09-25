@@ -15,6 +15,7 @@ html, body  {
 .district:hover {
   /*fill: #591100;*/
   stroke-width: 3;
+  cursor: pointer;
 }
 
 .selected {
@@ -82,4 +83,12 @@ h2  {
 #filters li a:hover {
   cursor: pointer ;
   background-color: #000;
+}
+
+.q {
+  cursor: pointer;
+}
+
+.qtip {
+  
 }
