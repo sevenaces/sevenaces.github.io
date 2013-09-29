@@ -1,6 +1,6 @@
 html, body  {
-  background: #000;
-  color: #CCC;
+  background: #FFF;
+  color: #333;
 }
 #heartbeat  {
   background: black;
@@ -32,7 +32,7 @@ h1, h2  {
   font-family: "Blanch Condensed", Arial, sans-serif;
   text-align: center;
   font-size: 60pt;
-  color: #FFF;
+  color: #000;
 }
 
 h2  {
@@ -51,7 +51,7 @@ h2  {
 }
 
 .filters  {
-  background: #888;
+  background: #DDD;
 }
 
 .pager a {
@@ -60,7 +60,8 @@ h2  {
 }
 
 .filter-selected  {
-  background: #222 !important;
+  color: #000;
+  background: #CCC !important;
 }
 
 @media (max-width: 980px) {
@@ -82,7 +83,7 @@ h2  {
 
 #filters li a:hover {
   cursor: pointer ;
-  background-color: #000;
+  /*background-color: #000;*/
 }
 
 .q {

@@ -70,7 +70,23 @@ function createHeartbeat(svg, speed, height, width, mx, my, heartbeatData, refBo
     });
   }
 
-  if(refBool)
+  
+
+  if(trailBool)
+  {
+    trail = svg
+    .append('path')
+    .datum(heartbeatData)
+    .attr({
+      'class': 'hb',
+      'fill': 'none',
+      'stroke-width':4,
+      'stroke': '#DDD',
+      d: line
+    })
+    .attr('transform', 'translate('+mx+','+my+')');
+  }
+if(refBool)
   {
   ref = svg
     .append('path')
@@ -84,22 +100,6 @@ function createHeartbeat(svg, speed, height, width, mx, my, heartbeatData, refBo
     })
     .attr('transform', 'translate('+mx+','+my+')');
   }
-
-  if(trailBool)
-  {
-    trail = svg
-    .append('path')
-    .datum(heartbeatData)
-    .attr({
-      'class': 'hb',
-      'fill': 'none',
-      'stroke-width':4,
-      'stroke': '#222',
-      d: line
-    })
-    .attr('transform', 'translate('+mx+','+my+')');
-  }
-
   path = svg
     .append('path')
     .datum(heartbeatData)
