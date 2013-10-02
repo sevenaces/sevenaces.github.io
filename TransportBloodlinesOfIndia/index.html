@@ -57,7 +57,6 @@
             <div class="hero-unit">
                 <h1>Transport Bloodlines of India</h1>
                 <p>A visualization showing the major roads and railways (intentionally without labels) using <a href="www.mapbox.com/tilemill/‎" target="_blank">TileMill</a> and <a href="http://www.mapbox.com" target="_blank">MapBox</a>, as a part of a <a href="http://en.wikipedia.org/wiki/User:Planemad/Talks/NID_Bangalore_Geovisualization_Workshop_2013#Prerequisites" target="_blank">GeoVizualization Workshop</a> by <a href="http://en.wikipedia.org/wiki/User:Planemad" target="_blank">Arun Ganesh</a>. Check out <a href="http://aroundamapin5days.tumblr.com/tagged/updates/chrono/" target="_blank">documentation</a> here.</p>
-                I'm using <a href="http://www.leafletjs.com" target="_blank">Leaflet.js</a> for this example.
             </div>
             </div>
 
@@ -73,16 +72,6 @@
     </div>
     <script src="./js/jquery.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <!--<script src="./js/d3.v3.min.js"></script>-->
-    <script src="./js/leaflet.js"></script>
-    <script>
-    var map = L.map('map').setView([20.63, 77.21], 5);
-
-    L.tileLayer('https://tiles.mapbox.com/v3/sevenaces.roads/{z}/{x}/{y}.png?updated=1376377680000', {
-        attribution: 'Served from MapBox',
-        maxZoom: 6,
-        minZoom: 3
-    }).addTo(map);
-    </script>
-  </body>
+    <iframe width='800' height='600' frameBorder='0' src='http://a.tiles.mapbox.com/v3/sevenaces.roads.html'></iframe>
+    </body>
 </html>
