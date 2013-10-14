@@ -33,6 +33,19 @@ var tooltip = d3.select("body")
 	.style("visibility", "hidden")
 	.text("State Name");
 
+var stateName = d3.select("body")
+	.append("div")
+	.style("position", "absolute")
+	.style("z-index", "10")
+	.style("padding", "10px")
+	.style("font-family", "'Blanch Condensed', Abel, verdana, sans-serif")
+	.style("font-size", "49pt")
+	.style('color', 'black')
+	.style("visibility", "hidden")
+	.style("top", "1400px")
+	.style("left", "950px")
+	.text("State Name");
+
 var selectFlag = false;
 var mapData;
 function mapInit()
@@ -47,14 +60,14 @@ function createMap(selectedDrgs, groupedDrg)
 {
 	var path = d3.geo.path();
 
-	// svg.select('g').remove();
+	
 
   	var districts = svg.append("g")
 		.attr("class", "district");
 
 	all_districts = districts.selectAll("path");
 	svg.selectAll('path').remove();
-  	// d3.json("./data/us-states.json", function(json) {
+  	
 	    all_districts
 	    .data(mapData.features)
 	    .enter().append("path")
@@ -84,31 +97,41 @@ function createMap(selectedDrgs, groupedDrg)
 	    })
 	    .attr("d", path)
 	    .on("mouseover", function(d){
-  			tooltip.text(d.properties["name"]);
+			if(d.properties["name"] == "Kentucky")
+				tooltip.text("Kentucky: Data not available");
+			else
+  				tooltip.text(d.properties["name"]);
   			return tooltip.style("visibility", "visible");
   		})
 	    .on("mousemove", function(){return tooltip.style("top", (event.pageY+20)+"px").style("left",(event.pageX+10)+"px");})
   		.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
   		.on('click', function(d){ 
-  			var flag = true;
-  			if(!d3.select('.selected').empty())
-  			{
-				if(d3.select('.selected').attr('id') == this.id.toString())
+            if(d.properties["name"] != "Kentucky")
+			{
+				var flag = true;
+            	stateName.text(d.properties["name"]);
+			
+				if(!d3.select('.selected').empty())
 				{
-					shrinkMap(false);
-					d3.selectAll('.district').attr('class', 'district');
-					flag = false;
+					if(d3.select('.selected').attr('id') == this.id.toString())
+					{
+						shrinkMap(false);
+						d3.selectAll('.district').attr('class', 'district');
+						
+						flag = false;
+					}
 				}
-  			}
-  			if(flag)
-  			{
-  				d3.selectAll('.district').attr('class', 'district');
-	  			d3.select(this).attr('class', 'district selected');
-	  			shrinkMap(true);
-				createHeartbeat(svg, 1500, 200, 600, 1020, 300, getData(d.properties["name"],[-1]), true, true, false);
-  			}  			
+				if(flag)
+				{
+					d3.selectAll('.district').attr('class', 'district');
+					d3.select(this).attr('class', 'district selected');
+					
+					shrinkMap(true);
+					createHeartbeat(svg, 1500, 200, 600, 820, 300, getData(d.properties["name"],[-1]), true, true, false);
+					
+				}  
+			}
   		});
-  	// });
 }
 
 function shrinkMap(shrink)
@@ -119,6 +142,7 @@ function shrinkMap(shrink)
 	    .transition()
 	    .duration(300)
 	    .attr('transform', 'scale(.8) translate(-80,140)');
+		stateName.style("visibility", "visible");
 	}
 	else
 	{
@@ -126,5 +150,6 @@ function shrinkMap(shrink)
 	    .transition()
 	    .duration(400)
 	    .attr('transform', 'scale(1.3)');
+		stateName.style("visibility", "hidden");
 	}
 }

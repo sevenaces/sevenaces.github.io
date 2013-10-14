@@ -19,7 +19,8 @@ html, body  {
 }
 
 .selected {
-  stroke-width: 5;
+  stroke-width: 5;	
+  stroke: #333;
 }
 
 .headerRow  {

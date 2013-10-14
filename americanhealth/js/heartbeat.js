@@ -54,21 +54,21 @@ function createHeartbeat(svg, speed, height, width, mx, my, heartbeatData, refBo
     .y(y);
 
   d3.selectAll('.hb').remove();
-  if(rectBool)
-  {
-  svg.append('rect')
-    .attr({
-     'x': mx,
-     'y': my - height/2 - 10,
-     'width': width - 300,
-     'height': height,
-     'rx': 40,
-     'ry': 40,
-     'fill' : '#101010',
-     'stroke' : 'white',
-     'stroke-width': 2
-    });
-  }
+//  if(rectBool)
+//  {
+//  svg.append('rect')
+//    .attr({
+//     'x': mx,
+//     'y': my - height/2 - 10,
+//     'width': width - 300,
+//     'height': height,
+//     'rx': 40,
+//     'ry': 40,
+//     'fill' : '#101010',
+//     'stroke' : 'white',
+//     'stroke-width': 2
+//    });
+//  }
 
   
 
@@ -106,7 +106,7 @@ if(refBool)
     .attr({
       'class': 'hb',
       'fill': 'none',
-      'stroke-width':1,
+      'stroke-width':3,
       'stroke': '#F00',
       'stroke-dasharray': 1000 + " " + 900,
       d: line

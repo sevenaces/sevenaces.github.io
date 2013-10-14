@@ -21,69 +21,26 @@ function toggleSelection(label, labelId)
 	var index = -1;
 	var indeces = new Array();
 	groupedDrgs = [];
+	d3.selectAll('.filter-selected').attr('class', '');
+	d3.select('#filter-' + labelId).attr('class', 'filter-selected');
+	selectedDrgs = label;
+	
+	if(selectedDrgs == 'All')
+	{
+		indeces = [-1];
+	}
+	else
+	{
+		do {
+			index = drgCategories.indexOf(selectedDrgs, index+1);
+			if(index >= 0)
+				indeces.push(index);
+		} while(index != -1)
+	}
 
-	// if(singleFilter)
-	// {
-		d3.selectAll('.filter-selected').attr('class', '');
-		d3.select('#filter-' + labelId).attr('class', 'filter-selected');
-		selectedDrgs = label;
-		
-		if(selectedDrgs == 'All')
-		{
-			indeces = [-1];
-		}
-		else
-		{
-			do {
-				index = drgCategories.indexOf(selectedDrgs, index+1);
-				if(index >= 0)
-					indeces.push(index);
-			} while(index != -1)
-		}
-	// }
-	// else
-	// {
-	// 	if(d3.select('#filter-' + labelId).attr('class') != 'filter-selected')
-	// 	{
-	// 		d3.select('#filter-' + labelId).attr('class', 'filter-selected');
-	// 		selectedDrgs.push(label);
-	// 	}
-	// 	else
-	// 	{
-	// 		d3.select('#filter-' + labelId).attr('class', '');
-	// 		selectedDrgs.splice(selectedDrgs.indexOf(label), 1);
-	// 	}
-
-	// 	var index = -1;
-	// 	var indeces = new Array();
-	// 	groupedDrgs = [];
-
-
-	// 	for(var i = 0; i < selectedDrgs.length; i++)
-	// 	{
-	// 		do
-	// 		{
-	// 			index = drgCategories.indexOf(selectedDrgs[i], index+1)
-	// 			if(index >=0) 
-	// 				indeces.push(index);
-	// 		}while (index >=0);
-
-	// 		groupedDrgs.push(indeces.length);		
-	// 	}
-
-	// 	if(indeces.length == 0)
-	// 		indeces = [-1];
-	// }
-	// console.log(indeces);
 	createMap(indeces, groupedDrgs);
+	shrinkMap(false);
 }
-
-
-// while (index >= 0) {
-//     System.out.println(index);
-//     index = word.indexOf(guess, index + 1);
-// }
-
 
 function getDrgs(codes)
 {
