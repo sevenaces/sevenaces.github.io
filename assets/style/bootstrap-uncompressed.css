@@ -337,7 +337,6 @@
 #page-twitter {
   position: relative;
   background: url(../images/pages/twitter/tw_bck.jpg) 50% 0 no-repeat fixed;
-  padding-top: 90px;
   padding-bottom: 130px;
 }
 #page-twitter .container {
@@ -7746,8 +7745,10 @@ h1.small	{
   }
 }
 
+.blog_thumb	{
+	opacity: 0.4;
+}
 
-
-
-
-
+.blog_thumb:hover	{
+	opacity: 1;
+}

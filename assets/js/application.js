@@ -198,6 +198,10 @@ $(document).ready(function(){
         });
         
     }, 1000);
+	
+	$('#search').click(function(){
+		window.location = "http://designserif.com/search/" + $('#appendedInputButton').val();
+	});
 });
 
 
