@@ -685,6 +685,7 @@
   background: none;
   outline: medium none;
 }
+/*
 #navigation #main-menu li:hover a:after,
 #navigation #main-menu li.active a:after {
   background-color: #bbbbbb;
@@ -701,6 +702,7 @@
   transform: rotate(45deg);
   width: 7px;
 }
+*/
 #navigation .mobile-menu {
   display: none;
   float: right;
