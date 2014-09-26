@@ -1,0 +1,140 @@
+/* Header */
+.large-header {
+	position: relative;
+	width: 100%;
+	background: #333;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center center;
+	z-index: 1;
+}
+
+.demo-1 .large-header {
+	background: #EEEEEE;
+}
+ 
+.main-title, .main_title {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	color: rgb(189,58,46);
+	text-align: center;
+	top: 25%;
+	
+	-webkit-transform: translate3d(-50%,-50%,0);
+	transform: translate3d(-50%,-50%,0);
+}
+
+.main-title {left: 50%;}
+
+.main_title {
+    top: 3%;
+    right: 1%;
+}
+
+.demo-1 .main-title{
+	font-size: 4.2em;
+	letter-spacing: 0.1em;
+}
+
+
+@media only screen and (max-width : 768px) {
+	.demo-1 .main-title
+    {
+		font-size: 3em;
+	}
+}
+
+.search {
+    top: 40%;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #999;
+    font-family: Raleway, Arial, sans-serif;
+    text-transform:none;
+    font-size: 2em !important;
+    width: 700px;
+}
+
+.search_a   {
+    position: absolute;
+	margin: 0;
+	padding: 0;
+	font-size: 2.2em;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate3d(-50%,-50%,0);
+	transform: translate3d(-50%,-50%,0);
+    width: 250px;
+    border: 2px solid rgb(189,58,46);
+    border-radius: 20px;
+    padding: 14px;
+}
+
+.search_a:hover {
+   background: rgb(189,58,46);
+    color: white;
+}
+
+.pitch  {
+    position: absolute;
+	margin: 0;
+	padding: 30;
+	font-size: 1.7em;
+	text-align: center;
+	bottom: -15%;
+	left: 50%;
+	-webkit-transform: translate3d(-50%,-50%,0);
+	transform: translate3d(-50%,-50%,0);
+    width: 900px;
+}
+
+.pitch img  {
+    background-blend-mode: difference, normal; 
+    -webkit-background-blend-mode: difference, normal; 
+}
+.pitch td   {
+    text-align:center;
+}
+.pitch p    {
+    font-size: 0.6em;
+    width: 300px;
+}
+
+.li {
+ background: #1e84b3;  
+    padding: 10px;
+    margin-right: 5px;
+    margin-left: 0px;
+    color: white;
+    text-transform:lowercase;
+    font-size: 1.3em;
+}
+
+.codrops-demos_1 {
+	padding-top: 1em;
+	font-size: 0.8em;
+}
+
+.codrops-demos_1 a {
+	display: inline-block;	
+	outline: none;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	font-size: 110%;
+	border: 2px solid transparent;
+    padding-top: 10px;
+    padding-bottom: 9px;
+    padding-right: 10px;
+}
+
+.codrops-demos_1 a:hover {
+	color: white;
+    background: rgb(189,58,46);
+    border-color: #383a3c;
+}
+
+hr  {margin: 0; padding: 0;}
