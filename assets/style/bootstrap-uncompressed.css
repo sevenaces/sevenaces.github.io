@@ -1862,6 +1862,7 @@ h1 {
   font-family: 'ChunkFiveRegular', 'Open Sans', sans-serif;
   line-height: 81px;
   letter-spacing: 1px;
+  font-weight: 300;
 }
 h2 {
   font-size: 42.75px;
