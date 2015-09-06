@@ -1,0 +1,49 @@
+<center><h5>BASICS OF DIGITAL INFORMATION VISUALIZATION</h5>
+<p>All of it boils down to parameters and indexes</p>
+<div class="row">
+	<div class="col s6 offset-s3">
+		<div class="card" id="circle-param-reveal">
+			<div class="card-image">
+				<img src="images/circle_params.png">
+				<span class="card-title black-text">An innocent circle?</span>
+			</div>
+			<div class="card-content">
+				<p>How many parameters make this one measly circle?</p>
+			</div>
+			<div class="card-action">
+				<a href="#!">Show</a>
+			</div>
+		</div>
+	</div>
+</div>
+<p>Thats with just one circle!<p>
+	<div class="row">
+	<div class="col s6">
+		<div class="card">
+			<div class="card-image">
+				<img src="images/line_params.png">
+				<span class="card-title black-text">Line Segment</span>
+			</div>
+		</div>
+	</div>
+	<div class="col s6">
+		<div class="card">
+			<div class="card-image">
+				<img src="images/rect_params.png">
+				<span class="card-title black-text">Rectangle</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</center>
+<script>
+	$(document).ready(function(){
+		$('#circle-param-reveal a').hover(function(){
+			$('#circle-param-reveal img').attr('src', 'images/circle_params_reveal.png')
+		}, function(){
+			$('#circle-param-reveal img').attr('src', 'images/circle_params.png')
+		});
+	});
+</script>

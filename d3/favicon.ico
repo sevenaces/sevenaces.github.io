@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>*|SUBJECT|*</title>
+    </head>
+    <body style="margin:0;padding-left:10px;padding-right:10px;padding-top:0;padding-bottom:0;height: 100% !important;width: 100% !important;">
+        <center>
+        <table border="0" cellpadding="10" cellspacing="0" width="100%" style="background:#FFFFFF">
+            <tr>
+                <td>
+                    <p style="font-family:Arial, sans-serif;font-size:9px;color:#c3c3c3; text-align:left">And get prospects to discover you more!</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top:0">
+                    <p style="font-family:Arial, sans-serif;font-size:15px;color:#000000; text-align:left; padding-top: 0; margin:0">Hi *|TOUSER_FIRSTNAME|*,</p>
+                    <p style="font-family:Arial, sans-serif;font-size:12px;color:#000000; text-align:left;line-height:18px">*|NI_85BODY1|*</p>
+
+            </td>
+        </tr>
+
+            <tr><td>                <p style="font-family:Arial, sans-serif;font-size:12px;color:#000000; text-align:left"><a href="https://www.credibase.com/" style="font-family:Arial, sans-serif;font-size:12px;color:#000000;">Credibase</a> benefits 7,415 people from companies like <a href="*|TOORG_URL|*" style="color: #000000;">*|TOORG_NAME|*</a>.</p>
+
+                <p style="font-family:Arial, sans-serif;font-size:11px;color:#BBBBBB; text-align:center">Credibase, Inc. 800 W El Camino Real, Mountain View CA 94040<br>Don't want to hear about *|TOORG_NAME|* again?
+                    <a href="https://www.credibase.com/unsubscribe/?md_email=*|EMAIL|*" style="font-family:Arial, sans-serif;font-size:11px;color: #AAAAAA;">Unsubscribe</a>
+                </p>
+            </td>
+        </tr>
+            
+    </table>
+    </center>
+</body>
+</html>
