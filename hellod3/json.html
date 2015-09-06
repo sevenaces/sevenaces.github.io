@@ -6,13 +6,14 @@
 	<div id="charts"></div>
 </div>
 <script type="text/javascript">
-	
+
 	d3.select('#charts')
 	  .append('p')
 	  .append('input')
 	  .attr('type', String)
 	  .attr('value', 'Titanic')
 	  .attr('id','filmtitle');
+		
 	d3.select('#charts')
 	  .append('a')
 	  .attr('class','btn btn-med')
@@ -23,7 +24,7 @@
 	  	update($('#filmtitle').val());
 	  })
 	  .append('br');
-	  
+
 	  function update(query)
 	  {
 	   	d3.json("http://www.omdbapi.com/?t=" + query, function(d){
@@ -45,4 +46,4 @@
 	  		}
 	  	});
 	  }
-</script>        
+</script>

@@ -1,0 +1,127 @@
+<div class="row">
+	<div class="col s12">
+	<h4>Hell world x 10</h4>
+	<div class="fixed-action-btn" style="bottom: 20px; right: 20px;">
+		<p><a class="waves-effect waves-light red btn add-remove" id="add">Add</a> <a class="waves-effect red waves-light btn add-remove" id="remove">Remove</a></p>
+  </div>
+
+	<ul class="collection" id="hellworld"></ul>
+	</div>
+	<div class="col s12">
+		<div class="row">
+      <div class="col s12 s12">
+				<div class="card">
+          <div class="card-content">
+            <span class="card-title black-text">Chapter checklist</span>
+						<p>
+            <input type="checkbox" id="divein-1-1-opt" /><label for="divein-1-1-opt">Loading D3.js</label><br />
+            <input type="checkbox" id="divein-1-2-opt" /><label for="divein-1-2-opt">Selecting elements via D3.js</label><br />
+            <input type="checkbox" id="divein-1-3-opt" /><label for="divein-1-3-opt">Chaining Functions</label><br />
+            <input type="checkbox" id="divein-1-4-opt" /><label for="divein-1-4-opt">Data binding</label><br />
+            <input type="checkbox" id="divein-1-5-opt" /><label for="divein-1-5-opt">Data.enter</label><br />
+            <input type="checkbox" id="divein-1-6-opt" /><label for="divein-1-6-opt">Data.exit</label><br />
+            <input type="checkbox" id="divein-1-7-opt" /><label for="divein-1-7-opt">Data based outputs</label><br />
+            <input type="checkbox" id="divein-1-8-opt" /><label for="divein-1-8-opt">Using JSON as data source</label><br />
+					</p>
+          </div>
+        </div>
+				<div class="card">
+          <div class="card-content">
+            <span class="card-title black-text">Advanced Example</span>
+						<div id="adv-chart">
+						</div>
+          </div>
+        </div>
+      </div>
+    </div>
+	</div>
+</div>
+
+
+<script>
+  var data = [1, 2, 3, 4, 5];
+  var i = 6;
+	var quotes;
+
+	d3.json("./data/quotes.json", function(error, json) {
+  	if (error) return console.warn(error);
+  		quotes = json;
+
+			update();
+	});
+
+  var list = d3.select("#hellworld");
+
+  function update()
+  {
+    var items = list.selectAll('li').data(data);
+
+    items.enter()
+       .append('li')
+			 .attr('class', function(d)	{
+				    if (d < 4)
+				        return "collection-item";
+						else if(d < 8)
+							return "collection-item yellow lighten-5";
+						else
+			        return "collection-item red lighten-5";
+			 })
+       .html(function(d) {
+         var html = '<span class="title"><span class="grey-text">#' + d + '</span> Say whaaaa!</span><p>' + quotes.quotes[d-1] + '</p>';
+         return html;
+       });
+
+    items.exit().remove();
+  }
+
+  d3.select('#add')
+		.on('click', function(){
+			if(i < 11)
+				data.push(i++);
+			else
+				Materialize.toast('Staph! I cannot add more!', 4000)
+			update();
+		});
+	d3.select('#remove')
+		.on('click', function(){
+			if(i>2)
+				{
+					data.pop();
+					i--;
+				}
+			else {
+				Materialize.toast('Why are you doing this to me?!!', 4000)
+			}
+			update();
+	});
+
+	// ADV Example
+	var dataset = [];
+
+	for(var x = 0; x < 25; x++ )	{
+		dataset.push(Math.random() * 200);
+	}
+
+	var advChart = d3.select("#adv-chart").selectAll("div").data(dataset);
+
+	advChart.enter()
+    .append("div")
+    .attr("class", "bar blue")
+    .style("height", function(d) {
+        var barHeight = d;
+        return barHeight + "px";
+    });
+
+	var tooltip = d3.select("body")
+		.append("div")
+		.attr('class', 'tooltip')
+		.text("Value");
+
+	advChart.on("mouseover", function(d){
+			tooltip.text("Value: " + Math.floor(d));
+			return tooltip.style("visibility", "visible");
+		})
+		.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+		.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+</script>
