@@ -1,0 +1,136 @@
+<div class="row">
+	<div class="col s12">
+	<h4>SVG and Shapes</h4>
+	<div id="shapes"></div>
+	</div>
+	<div class="col s12">
+		<div class="row">
+      <div class="col s12 s12">
+				<div class="card">
+          <div class="card-content">
+            <span class="card-title black-text">Chapter checklist</span>
+						<p>
+            <input type="checkbox" id="divein-2-1-opt" /><label for="divein-2-1-opt">Different between Bitmap and Vector Graphics</label><br />
+            <input type="checkbox" id="divein-2-2-opt" /><label for="divein-2-2-opt">Various types of shapes for SVG and their properties</label><br />
+            <input type="checkbox" id="divein-2-3-opt" /><label for="divein-2-3-opt">Basic animation</label><br />
+					</p>
+          </div>
+        </div>
+      </div>
+    </div>
+	</div>
+</div>
+<script>
+var tooltip = d3.select("body")
+	.append("div")
+	.attr('class', 'tooltip')
+	.text("Value");
+
+
+var canvas = d3.select('#shapes').append('svg')
+	.attr({
+		'width': '100%',
+		'height': 350,
+		'class': 'card'
+	});
+
+	function rand(limit) {return Math.floor(Math.random()*limit);}
+	function randc() {return '#'+'0123456789abcdef'.split('').map(function(v,i,a){return i>5 ? null : a[Math.floor(Math.random()*16)] }).join('');}
+
+	function animate()	{
+		animateLine();
+		animateCircle();
+		animateRect();
+		animateEllipse();
+	}
+	var line = canvas.append('line')
+		 .attr({
+			"stroke-width": 2,
+			'stroke': '#C91019',
+			'x1': rand(1000), 'x2': rand(1000),
+			'y1': rand(350), 'y2': rand(350)
+		});
+
+	// animateLine();
+	function animateLine()
+	{
+		line.transition()
+			.duration(3000)
+			.ease('ease-in')
+			.attr({
+ 				'x1': rand(1000), 'x2': rand(1000),
+ 				'y1': rand(350), 'y2': rand(350)
+ 			})
+			.each('end', animateLine);
+	}
+
+	var circle = canvas.append('circle')
+		 .attr({
+			'cx': rand(1000),
+			'cy': rand(350),
+			'r': rand(200),
+			'fill' : randc(),
+		});
+
+	// animateCircle();
+	function animateCircle()
+	{
+		circle.transition()
+			.duration(3000)
+			.ease('ease-in')
+			.attr('fill', randc())
+			.each('end', animateCircle);
+	}
+
+	var rect = canvas.append('rect')
+	.attr({
+			'x': rand(1000),
+			'y': rand(350),
+			'width': rand(500),
+			'height': rand(175)+40,
+			'fill' : 'none',
+			'stroke': '#50B708',
+			'stroke-width': '2',
+			'stroke-dasharray': '15,5,10,5',
+			'stroke-dashoffset': 0
+		});
+
+		// animateRect();
+
+		function animateRect()
+		{
+			rect.transition()
+			.duration(5000)
+			.ease('linear')
+			.attr({'stroke-dashoffset': rand(500)+ 300})
+			.each('end', animateRect);
+		}
+
+
+		var ellipse = canvas.append('ellipse')
+			.attr({
+				'cx': rand(1000),
+				'cy': rand(350),
+				'rx': rand(300),
+				'ry': rand(300),
+				'fill' : 'none',
+				'stroke': '#9F08B7',
+				'stroke-width': '2',
+				'stroke-dashoffset': 0
+			});
+		// animateEllipse();
+		function animateEllipse()
+		{
+			ellipse.transition()
+			.duration(3000)
+			.ease('ease-in')
+			.attr({
+				'cx': rand(1000),
+				'cy': rand(350),
+				'rx': rand(300),
+				'ry': rand(300),
+			})
+			.each("end", animateEllipse);
+		}
+
+</script>

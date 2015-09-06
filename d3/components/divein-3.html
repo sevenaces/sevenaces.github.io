@@ -1,0 +1,94 @@
+<div class="row">
+	<div class="col s12">
+	<h4>SVG and Shapes</h4>
+	<div id="graph"></div>
+	</div>
+	<div class="col s12">
+		<div class="row">
+      <div class="col s12 s12">
+				<div class="card">
+          <div class="card-content">
+            <span class="card-title black-text">Chapter checklist</span>
+						<p>
+            <input type="checkbox" id="divein-3-1-opt" /><label for="divein-3-1-opt">Basic Graph</label><br />
+            <input type="checkbox" id="divein-3-2-opt" /><label for="divein-3-2-opt">Creating Axis</label><br />
+            <input type="checkbox" id="divein-3-3-opt" /><label for="divein-3-3-opt">Transform and Scale</label><br />
+            <input type="checkbox" id="divein-3-4-opt" /><label for="divein-3-4-opt">Scale, range and domain</label><br />
+					</p>
+          </div>
+        </div>
+      </div>
+    </div>
+	</div>
+</div>
+<script>
+	var blue = '#005580'
+	var data = [20, 30, 10, 50, 15, 20, 30, 10, 50, 15];
+	var height = 400, width=800;
+	var margin = 50;
+
+	var svg = d3.select('#graph').append('svg')
+			.attr({
+				'height': height + margin*2,
+				'width' : '100%',
+				'class': 'card'
+
+			})
+			.append('g')
+			.attr('transform', 'translate('+margin+','+margin+')');
+
+	var scaleX = d3.scale.linear()
+			.range([0,width])
+			.domain([0, data.length -1]);
+
+	var scaleY = d3.scale.linear()
+				.range([height,0])
+				.domain(d3.extent(data));
+
+	function x(d,i) {return scaleX(i);}
+	function y(d,i) {return scaleY(d); }
+	function previous(accessor){
+		return function(d,i){
+			return i > 0 ? accessor(data[i-1], i-1):0;
+		}
+	}
+
+	var xAxis = d3.svg.axis()
+		.scale(scaleX)
+		.orient('bottom');
+
+	svg.append('g')
+		.attr('class', 'axis')
+		.attr('transform', 'translate(0,' + height + ')')
+		.call(xAxis);
+
+	var yAxis = d3.svg.axis()
+		.scale(scaleY)
+		.orient('left');
+
+	svg.append('g')
+		.attr('class', 'axis')
+		.call(yAxis);
+
+
+	function update()
+	{
+		var circles = svg.selectAll('circle').data(data);
+		circles.enter()
+			.append('circle')
+			.attr({
+				'fill': blue,
+				'cx': 50,
+				'cy': 380,
+				'r': 0
+			})
+			.transition()
+			.duration(700)
+			.delay(function(d,i) {return i*100;})
+			.attr('cy', y)
+			.attr('cx', x)
+			.attr('r', function(d,i) {return d/2;});
+	}
+
+	update();
+</script>
