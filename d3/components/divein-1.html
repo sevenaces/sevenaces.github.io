@@ -39,10 +39,12 @@
 
 
 <script>
-  var data = [1, 2, 3, 4, 5];
+	// Initializing variables
+	var data = [1, 2, 3, 4, 5];
   var i = 6;
-	var quotes;
 
+	// Load some quotes froma  json file. This could be on a server too (as long as you have access)
+	var quotes;
 	d3.json("./data/quotes.json", function(error, json) {
   	if (error) return console.warn(error);
   		quotes = json;
@@ -50,30 +52,35 @@
 			update();
 	});
 
+	// Create a variable which would hold the list
   var list = d3.select("#hellworld");
 
+	// General function I'll be using to make an update to the list every time there is an update.
+	// D3.js has an inbuild way for this, but I prefer to do it this way
+	// Read up more on data.enter() and data.exit() for those
   function update()
   {
-    var items = list.selectAll('li').data(data);
+    var items = list.selectAll('li').data(data);	// Select all list items
 
-    items.enter()
+    items.enter()					// Anytime there is an addition to the data bound on items, this should happen
        .append('li')
 			 .attr('class', function(d)	{
 				    if (d < 4)
 				        return "collection-item";
 						else if(d < 8)
-							return "collection-item yellow lighten-5";
+							return "collection-item yellow lighten-5";				// Data based classes
 						else
 			        return "collection-item red lighten-5";
 			 })
        .html(function(d) {
-         var html = '<span class="title"><span class="grey-text">#' + d + '</span> Say whaaaa!</span><p>' + quotes.quotes[d-1] + '</p>';
+         var html = '<span class="title"><span class="grey-text">#' + d + '</span> Say whaaaa!</span><p>' + quotes.quotes[d-1] + '</p>';	// Read up on templating. That would be a better solution here.
          return html;
        });
 
     items.exit().remove();
   }
 
+	// JS to act on Add button
   d3.select('#add')
 		.on('click', function(){
 			if(i < 11)
@@ -82,6 +89,8 @@
 				Materialize.toast('Staph! I cannot add more!', 4000)
 			update();
 		});
+
+	// JS to act on Remove button
 	d3.select('#remove')
 		.on('click', function(){
 			if(i>2)

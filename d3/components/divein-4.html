@@ -1,0 +1,214 @@
+<style>
+	.district path {
+		stroke-width: 1px;
+		fill:#8ddaff;
+		stroke:#FFF;
+	}
+	.district path:hover {
+		stroke-width: 2px;
+		fill: #00A1F3;
+	}
+	.district .selected	{
+		fill: #00A1F3;
+	}
+	.graphLabel	{
+		font-size: 45pt;
+		fill: #999;
+		font-weight: 100;
+	}
+	.axis path,	.axis line {
+	    fill: none;
+	    stroke: black;
+	    shape-rendering: crispEdges;
+	}
+
+	.axis text {
+	    font-size: 11px;
+	    margin-bottom:3px;
+	}
+
+	.btn 	{
+		margin: 10px;
+	}
+</style>
+<div class="row">
+	<div class="col s12">
+		<h4>Binding Data</h4>
+		<p>Binds scores of 2012 board exams to districts, over the years.</p>
+	</div>
+	<div class="col s6">
+			<div id="charts">
+				<div id="map"></div>
+			</div>
+	</div>
+	<div class="col s6">
+		<div class="subjects"></div>
+		<div id="graph"></div>
+	</div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+	// Initializing some variabled
+	var blue = '#005580';
+	var lightblue = '#8ddaff';
+	var width = 300, height = 500;
+	var gwidth = 400, gheight = 400;
+	var margin = 50;
+	var tintime = 70,
+		touttime = 200;
+	var selectedDistrict;
+
+	// The scales I'll be using. Because I know the extent of my data, I'm manually setting the domain
+	var scaleX = d3.scale.linear()
+					.range([0,gwidth])
+					.domain([0,8]);
+
+	var scaleY = d3.scale.linear()
+					.range([gheight,0])
+					.domain([0,100]);
+
+
+	// INIT JSONS
+	var math, scores;
+	d3.json('./data/math.json', function(json){
+		scores = math = json;
+	});
+
+	var kannada;
+	d3.json('./data/kannada.json', function(json){
+		kannada = json;
+	});
+
+	var english;
+	d3.json('./data/english.json', function(json){
+		english = json;
+	});
+
+	var districtsjson;
+	d3.json('./data/karnatakadistricts.json', function(json) {
+		districtsjson = json;
+		initialize(selectedDistrict);
+	});
+
+	// ADD BUTTONS
+
+	d3.select('.subjects').append('button').text('Maths').attr('class','btn btn-large waves-effect waves-light disabled').attr('id', 'math').on('click', function(){toggleSubject('math');});
+	d3.select('.subjects').append('button').text('Kannada').attr('class','btn btn-large waves-effect waves-light ').attr('id', 'kannada').on('click', function(){toggleSubject('kannada');});
+	d3.select('.subjects').append('button').text('English').attr('class','btn btn-large waves-effect waves-light ').attr('id', 'english').on('click', function(){toggleSubject('english');});
+
+	// Common function I'll be using. A LOT. Discussed previously
+	function x(d,i){return scaleX(i);}
+	function y(d,i){return scaleY(d);}
+
+	var tooltip = d3.select("body")
+		.append("div")
+		.attr("class", "tooltip")
+		.style("visibility", "hidden");
+
+	// Attach SVG to the #Map div
+	var svg = d3.select('#map').append('svg')
+				.attr({
+					'height': height + margin*2,
+					'width' : width + margin*2
+				})
+				.append('g')
+				.attr('transform', 'translate('+margin+','+margin+')');
+
+	// Attach SVG for the map on the right
+	var graphsvg = d3.select('#graph').append('svg')
+					.attr({
+						'height': gheight + margin*2,
+						'width' : gwidth + margin*2
+					})
+					.append('g')
+					.attr('transform', 'translate('+margin+','+margin+')');
+
+
+	// Set up map, the projection, and positioninig
+	var path = d3.geo.path().projection(d3.geo.mercator().translate([-5200, 1300]).scale(4000));	// These numbers you'll get by hit and trial (usually, they should be [0,0,100], but my geoJson file was screwed)
+	var districts = svg.append("g")
+			.attr("class", "district");
+
+	all_districts = districts.selectAll("path");
+
+	// Set up graph's axis
+	var xAxis = d3.svg.axis()
+	    .scale(scaleX)
+	    .orient('bottom');
+
+	graphsvg.append('g')
+	    .attr('class', 'axis')
+	    .call(xAxis);
+
+	var yAxis = d3.svg.axis()
+	    .scale(scaleY)
+	    .orient('left')
+	    .ticks(6);
+
+	graphsvg.append('g')
+	    .attr('class', 'axis')
+	    .call(yAxis);
+
+  function initialize(currentDistrict)
+  	{
+	    all_districts
+	    .data(districtsjson.features)
+	    .enter().append("path")
+	    .attr('class', function(d){ if(d.properties['dist_code'] == currentDistrict) {return 'district selected'; } else return 'district';})
+	    .attr('id', function(d){return d.properties['dist_code'];})
+	    .attr("d", path)
+  		.on("mouseover", function(d){
+
+  			tooltip.text(d.properties['DISTSHP']);
+  			return tooltip.style("visibility", "visible");
+  		})
+  		.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+  		.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+  		.on('click', function(d){
+  			makeGraph(d.properties['dist_code'], scores);
+  			d3.selectAll('.district').attr('class', 'district');
+  			d3.select(this).attr('class', 'district selected');
+  			selectedDistrict = d.properties['dist_code'];
+	  		});
+
+		if(currentDistrict)
+			makeGraph(currentDistrict, scores);
+  	}
+
+  	function makeGraph(dist_code, scores)
+  	{
+  		graphsvg.selectAll('rect').remove();
+		graphsvg.selectAll('rect')
+			.data(scores[dist_code][0])
+			.enter()
+			.append('rect')
+			.attr({
+				'x': x,
+				'y': 0,
+				// 'y': gheight,
+				'width': 20,
+				'height': y,
+				'fill' : lightblue,
+				'id' : function(d, i) {return 'graphRect' + i;}
+			})
+			.on('mouseover', function(d){
+				tooltip.text(d + "%");
+				return tooltip.style('visibility', 'visible');
+			})
+			.on('mousemove', function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+			.on('mouseout', function(){return tooltip.style('visibility', 'hidden');});
+  	}
+
+
+
+	function toggleSubject(subject)	{
+		d3.selectAll('.subjects button')
+			.attr('class', 'btn btn-large waves-effect waves-light');
+		d3.select('#' + subject)
+			.attr('class', 'btn btn-large waves-effect waves-light disabled');
+		scores = window[subject];
+		initialize(selectedDistrict);
+	}
+</script>
