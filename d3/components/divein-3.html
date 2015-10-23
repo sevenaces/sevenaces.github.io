@@ -47,11 +47,7 @@
 
 	function x(d,i) {return scaleX(i);}
 	function y(d,i) {return scaleY(d); }
-	function previous(accessor){
-		return function(d,i){
-			return i > 0 ? accessor(data[i-1], i-1):0;
-		}
-	}
+
 
 	var xAxis = d3.svg.axis()
 		.scale(scaleX)
@@ -78,8 +74,8 @@
 			.append('circle')
 			.attr({
 				'fill': blue,
-				'cx': 50,
-				'cy': 380,
+				// 'cx': 50,
+				// 'cy': 380,
 				'r': 0
 			})
 			.transition()

@@ -1,0 +1,39 @@
+
+
+<a href="javascript:void()" id="add"> ADD ITEM</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:void()" id="remove"> REMOVE ITEM</a>
+
+<ul id='list_container'>
+
+</ul>
+<script>
+	var numbers = [ 10, 62, 456, 12, 097, 345, 3456];
+	var list = d3.select('#list_container');
+
+
+	function update()	{
+		var listItems = list.selectAll('li').data(numbers);
+
+		listItems.enter()
+			.append('li')
+			.html(function(d){return d});
+
+		listItems.exit().remove();
+
+	}
+
+	d3.select('#add')
+		.on('click', function(){
+			numbers.push(numbers.length * 100);
+			update();
+		});
+
+	d3.select('#remove')
+		.on('click', function(){
+			numbers.pop();
+			update();
+		});
+
+
+	update();
+</script>

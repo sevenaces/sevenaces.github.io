@@ -41,7 +41,7 @@
 <script>
 	// Initializing variables
 	var data = [1, 2, 3, 4, 5];
-  var i = 6;
+	var i = 6;
 
 	// Load some quotes froma  json file. This could be on a server too (as long as you have access)
 	var quotes;
@@ -83,24 +83,20 @@
 	// JS to act on Add button
   d3.select('#add')
 		.on('click', function(){
-			if(i < 11)
-				data.push(i++);
+			if(data.length < 10)
+				data.push(data.length + 1);
 			else
-				Materialize.toast('Staph! I cannot add more!', 4000)
+				Materialize.toast('Staph! I cannot add more!', 4000);
 			update();
 		});
 
 	// JS to act on Remove button
 	d3.select('#remove')
 		.on('click', function(){
-			if(i>2)
-				{
-					data.pop();
-					i--;
-				}
-			else {
+			if(data.length > 1)
+				data.pop();
+			else
 				Materialize.toast('Why are you doing this to me?!!', 4000)
-			}
 			update();
 	});
 
