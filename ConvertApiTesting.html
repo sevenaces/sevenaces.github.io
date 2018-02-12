@@ -1,9 +1,6 @@
 <html>
 <head>
     <title>Convert API</title>
-    <script type="text/javascript">
-        console.log("Hello")
-    </script>
 </head>
 <body>
  <h1 style="display:none" data-target="cbuser.fallback">
@@ -32,5 +29,7 @@
             o.parentNode.insertBefore(c, o)
         }
     }(window, document, "script"));
+    document.addEventListener('cb.user.ready',function(){console.log(window.cbuser)});
+    window.onload = function(){window.cbtrack.init()}
 </script>
 </html>
