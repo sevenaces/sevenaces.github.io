@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Convert API</title>
+    <script type="text/javascript">
+        console.log("Hello")
+    </script>
+</head>
+<body>
+<h1>
+    Hi <span data-target="cbuser.firstName">_ _ _ _ _</span>, from <span data-target="cbuser.org.name">_ _ _ _ _</span>
+</h1>
+</body>
+<script type="text/javascript">
+    // CONFIG
+    window.cbConfig = {
+        id: "titan-data",
+        debug: false
+    };
+
+    // CONVERT API CODE
+    (function (t, e, n) {
+        if (t.cbConfig && t.cbConfig.id) {
+            var c = e.createElement(n);
+            c.async = !0, c.src = "https://s3-ap-southeast-1.amazonaws.com/cbandrey2static/static/js/titan-data.js";
+            var o = e.getElementsByTagName(n)[0];
+            o.parentNode.insertBefore(c, o)
+        }
+    }(window, document, "script"));
+</script>
+</html>
