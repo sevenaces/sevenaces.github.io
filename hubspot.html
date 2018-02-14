@@ -20,8 +20,6 @@ window.cbConfig = {
 };
 // CONVERT API CODE
 (function(t,e,n){if(t.cbConfig&&t.cbConfig.id){var c=e.createElement(n);c.async=0,c.src="https://s3-ap-southeast-1.amazonaws.com/cbandrey2static/static/js/telestax.js";var o=e.getElementsByTagName(n)[0];o.parentNode.insertBefore(c,o)}}(window,document,"script"));
-    document.addEventListener('cb.user.ready',function(){console.log(window.cbuser)});
-    window.onload = function(){window.cbtrack.init()}
 </script>
     <script>
    
@@ -29,8 +27,6 @@ window.cbConfig = {
     portalId: '4271717',
     formId: 'c8826697-dabf-4135-9940-d248780c6d07',
     onFormReady(form){
-        console.log("Here");
-                console.log(window.cb_hubspot);
         window.cb_hubspot.hubspotFormReady(form)
    	}
   });
