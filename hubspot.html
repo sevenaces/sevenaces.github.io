@@ -13,11 +13,23 @@
     <script charset="utf-8" type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
 <script>
+    function populateForm(id)
+    {
+        $('#firstname-'+id).val("Parag").change();
+        $('#lastname-'+id).val("Gupta").change();
+        $('#company-'+id).val("ParagGupta In").change();
+        $('#email-'+id).val("hi@paraggupta.in").change();
+        $('#jobtitle-'+id).val("UX Designer").change();
+        console.log(id)   
+    }
+    
   hbspt.forms.create({ 
     portalId: '4271717',
     formId: 'c8826697-dabf-4135-9940-d248780c6d07',
     onFormReady(form, ctx){
-   		console.log('test');
+        console.log(form);
+        console.log(ctx);
+   		populateForm("c8826697-dabf-4135-9940-d248780c6d07");
    	}
   });
 </script>
