@@ -12,24 +12,26 @@
     
     <script charset="utf-8" type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
-<script>
-    function populateForm(id)
-    {
-        $('#firstname-'+id).val("Parag").change();
-        $('#lastname-'+id).val("Gupta").change();
-        $('#company-'+id).val("ParagGupta In").change();
-        $('#email-'+id).val("hi@paraggupta.in").change();
-        $('#jobtitle-'+id).val("UX Designer").change();
-    }
-    
+<script type="text/javascript">
+// CONFIG
+window.cbConfig = {
+    id: "telestax",
+    debug: false
+};
+// CONVERT API CODE
+(function(t,e,n){if(t.cbConfig&&t.cbConfig.id){var c=e.createElement(n);c.async=0,c.src="https://s3-ap-southeast-1.amazonaws.com/cbandrey2static/static/js/telestax.js";var o=e.getElementsByTagName(n)[0];o.parentNode.insertBefore(c,o)}}(window,document,"script"));
+    document.addEventListener('cb.user.ready',function(){console.log(window.cbuser)});
+    window.onload = function(){window.cbtrack.init()}
+</script>
+    <script>
+   
   hbspt.forms.create({ 
     portalId: '4271717',
     formId: 'c8826697-dabf-4135-9940-d248780c6d07',
     onFormReady(form){
-        debugger;
-        console.log("Form",form);
-                console.log("Form1",typeof(form));
-   		populateForm("c8826697-dabf-4135-9940-d248780c6d07");
+        console.log("Here");
+                console.log(window.cb_hubspot);
+        window.cb_hubspot(form)
    	}
   });
 </script>
