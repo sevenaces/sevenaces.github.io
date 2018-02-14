@@ -25,14 +25,12 @@
   hbspt.forms.create({ 
     portalId: '4271717',
     formId: 'c8826697-dabf-4135-9940-d248780c6d07',
-    onFormReady(form, ctx){
+    onFormReady(form){
         console.log("Form",form);
-        console.log("ctx",ctx);
+                console.log("Form1",typeof(form));
+                console.log("Form2",form.0);
    		populateForm("c8826697-dabf-4135-9940-d248780c6d07");
    	}
   });
 </script>
 </html>
-
-
-$('#hsForm_c8826697-dabf-4135-9940-d248780c6d07')
