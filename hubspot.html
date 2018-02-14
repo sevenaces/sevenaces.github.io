@@ -3,31 +3,30 @@
     <title>Convert API</title>
 </head>
 <body>
-
+    <h1 data-target="cbuser.firstName"></h1>
+    <input name="fName" id="fName" value="" data-target="cbuser.firstName">
+    <textarea name="fName" id="fName" value="" data-target="cbuser.lastName"></textarea>
 </body>
 <!--[if lte IE 8]>
 <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
 <![endif]-->
-    
-    
     <script charset="utf-8" type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
-    <script src="https://s3-ap-southeast-1.amazonaws.com/cbandrey2static/static/js/telestax.js" charset="utf-8"></script>
-<script type="text/javascript">
+
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+    <script>
+  hbspt.forms.create({ 
+    portalId: '4271717',
+    formId: 'c8826697-dabf-4135-9940-d248780c6d07'
+  });
+</script>
+    <script type="text/javascript">
 // CONFIG
 window.cbConfig = {
     id: "telestax",
-    debug: false
+    debug: false,
+    hbsptFormId:"c8826697-dabf-4135-9940-d248780c6d07"
 };
-</script>
-    <script>
-   
-  hbspt.forms.create({ 
-    portalId: '4271717',
-    formId: 'c8826697-dabf-4135-9940-d248780c6d07',
-    onFormReady(form){
-        window.cb_hubspot.hubspotFormReady(form)
-   	}
-  });
+    -// CONVERT API CODE	
+-(function(t,e,n){if(t.cbConfig&&t.cbConfig.id){var c=e.createElement(n);c.async=true,c.src="https://s3-ap-southeast-1.amazonaws.com/cbandrey2static/static/js/telestax.js";var o=e.getElementsByTagName(n)[0];o.parentNode.insertBefore(c,o)}}(window,document,"script"));
 </script>
 </html>
