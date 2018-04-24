@@ -7,6 +7,10 @@
      Hi, 
      This is fallback Message.
     </h1>
+    <form name="hello" action="">
+        <input id="one" name="one" value="pavan">
+        <button type="submit">Submit</button>
+    </form>
 <h1 data-target="cbuser.msg">
     Hi <span data-target="cbuser.firstName">_ _ _ _ _</span>,
     You hold title <span data-target="cbuser.title">_ _ _ _ _</span> in <span data-target="cbuser.org.name">_ _ _ _ _</span><br>
@@ -26,6 +30,9 @@ window.cbConfig = {
 (function(t,e,n){if(t.cbConfig&&t.cbConfig.id){var c=e.createElement(n);c.async=!0,c.src="https://s3-ap-southeast-1.amazonaws.com/cbandrey2static/static/js/ripple-media.js";var o=e.getElementsByTagName(n)[0];o.parentNode.insertBefore(c,o)}}(window,document,"script"));
 
     document.addEventListener('cb.user.ready',function(){console.log(window.cbuser)});
-    window.onload = function(){window.cbtrack.init()}
+    window.onload = function(){
+        
+        window.cbtrack.init();                       
+                              }
 </script>
 </html>
