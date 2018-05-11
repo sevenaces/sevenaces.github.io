@@ -7,7 +7,7 @@
      Hi, 
      This is fallback Message.
     </h1>
-    <form name="hello" action="">
+    <form name="hello" action="" data-target="cbuser">
         <input id="one" name="one" value="pavan">
         <button type="submit">Submit</button>
     </form>
@@ -16,7 +16,7 @@
     You hold title <span data-target="cbuser.title">_ _ _ _ _</span> in <span data-target="cbuser.org.name">_ _ _ _ _</span><br>
     Which is located in <span data-target="cbuser.org.location.city">_ _ _ _ _</span>,<span data-target="cbuser.org.location.country">_ _ _ _ _</span>,<span data-target="cbuser.org.location.region">_ _ _ _ _</span>
 </h1>
-    <a href="http://paraggupta.in/ConvertNewFile1">Click here</a>
+    <a href="http://paraggupta.in/ConvertNewFile1" data-target="cbuser">Click here</a>
 </body>
 <script type="text/javascript">
 
@@ -27,7 +27,7 @@ window.cbConfig = {
 };
 
 // CONVERT API CODE
-(function(t,e,n){if(t.cbConfig&&t.cbConfig.id){var c=e.createElement(n);c.async=!0,c.src="https://credibase.imgix.net/static/js/ors-group.js";var o=e.getElementsByTagName(n)[0];o.parentNode.insertBefore(c,o)}}(window,document,"script"));
+(function(t,e,n){if(t.cbConfig&&t.cbConfig.id){var c=e.createElement(n);c.async=!0,c.src="https://s3-ap-southeast-1.amazonaws.com/cbandrey1static/static/js/ors-group.js";var o=e.getElementsByTagName(n)[0];o.parentNode.insertBefore(c,o)}}(window,document,"script"));
 
     document.addEventListener('cb.user.ready',function(){console.log(window.cbuser)});
     window.onload = function(){
